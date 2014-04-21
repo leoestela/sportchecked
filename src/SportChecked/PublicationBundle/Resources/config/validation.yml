@@ -1,0 +1,5 @@
+SportChecked\PublicatioBundle\Entity\Publication:
+    properties:
+        file:
+            - File:
+                maxSize: 6000000

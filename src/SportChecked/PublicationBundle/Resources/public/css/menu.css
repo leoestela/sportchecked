@@ -1,0 +1,154 @@
+/* CSS for All the Menus START */
+ul.ws_css_cb_menu {
+	display: table-cell;
+	height: 35px;
+}
+ul.ws_css_cb_menu li {
+	display: block;
+	margin: 4px 0px 0px 2px;
+	float: left;
+}
+ul.ws_css_cb_menu a:hover ul, ul.ws_css_cb_menu a:hover a:hover ul, ul.ws_css_cb_menu a:hover a:hover a:hover ul {
+	display: block;
+}
+ul.ws_css_cb_menu a {
+	display: block;
+	vertical-align: middle;
+	border-width: 0px;
+	border-color: #6655ff;
+	border-style: solid;
+	padding: 2px;
+	padding-left: 0;
+	text-decoration: none;
+	text-align: center;
+}
+ul.ws_css_cb_menum li a:hover, ul.ws_css_cb_menum li a {
+	padding: 4px;
+	padding-top: 10px;
+	font-weight: normal;
+}
+ul.ws_css_cb_menu ul {
+	position: absolute;
+	left: -1px;
+	top: 98%;
+	width: 160.65px;
+	border-left: 1px solid #d5a000;
+	border-bottom: 3px solid #d5a000;
+	border-right: 3px solid #d5a000;
+	border-top: 0px;
+	background-color: #ffffff;
+}
+ul.ws_css_cb_menu ul ul {
+	position: absolute;
+	left: 98%;
+	top: -2px;
+}
+ul.ws_css_cb_menu, ul.ws_css_cb_menu ul {
+	margin: 0px;
+	list-style: none;
+	padding: 0px 2px 2px 0px;
+}
+ul.ws_css_cb_menu a:active, ul.ws_css_cb_menu a:focus {
+	outline-style: none;
+}
+ul.ws_css_cb_menu ul li {
+	float: left;
+	width: 150px;
+}
+ul.ws_css_cb_menu ul a {
+	white-space: nowrap;
+	text-align: left;
+}
+ul.ws_css_cb_menu li:hover {
+	position: relative;
+}
+ul.ws_css_cb_menu img {
+	border: none;
+	width: 9px;
+	height: 9px;
+}
+ul.ws_css_cb_menu ul img {
+	width: 9px;
+	height: 9px;
+	margin-top: -3px;
+	margin-left: 1px;
+}
+ul.ws_css_cb_menu ul, ul.ws_css_cb_menu a:hover ul ul {
+	display: none;
+	z-index: 99999;
+}
+ul.ws_css_cb_menu li:hover > ul {
+	display: block
+}
+ul.ws_css_cb_menu span {
+	display: block;
+	padding-right: 11px;
+	padding-bottom: 4px;
+	font-size: 12px;
+	font-weight: bold;
+}
+.inactive {
+	color: #666666;	
+}
+.inactive:hover {
+	color: #fff;	
+}
+/* CSS for TABLE Tags for IE 6 and Lower START */
+ul.ws_css_cb_menu li a table, ul.ws_css_cb_menu li a:hover table {
+	border-collapse: collapse;
+	margin: -4px 0px 0px -9px;
+	border: 0px;
+	padding: 0px;
+}
+ul.ws_css_cb_menu li a table tr td, ul.ws_css_cb_menu li a:hover table tr td {
+	padding: 0px;
+	border: 0px;
+}
+ul.ws_css_cb_menu li a table ul, ul.ws_css_cb_menu li a:hover table ul {
+	border-collapse: collapse;
+	padding: 0px;
+	margin: -4px 0px 0px -9px;
+}
+/* CSS for TABLE Tags for IE 6 and Lower END */
+/* CSS for All the Menus END */
+
+/* Video Menu Starts - Our Second Menu, by using the above class - this is just to change the colors and the height, width of the menu */
+ul.videoCssMenu {
+	border: 0px;
+	margin: 0 auto;
+}
+ul.videoCssMenu .videoMenuTitleImage {
+	margin: -2px 0px 0px -2px;
+	width: 79px;
+	height: 30px;
+}
+ul.videoCssMenu ul {
+	left: 0px;
+	background-color: #2a2a2a;
+	width: 280px;
+	border: 0px;
+	border-bottom: 3px solid #0f0f0f;
+}
+ul.videoCssMenu li a {
+	padding: 5px     !important;
+	color: #fff;
+}
+ul.videoCssMenu ul li a {
+	color: #fff;
+}
+ul.videoCssMenu ul li {
+	width: 135px;
+	float: left;
+	height: 27px;
+	font: normal 11px Arial, Verdana, Helvetica, sans-serif;
+}
+ul.videoCssMenu li:hover > a, ul.videoCssMenu li a:hover {
+	border-color: #fff;
+	padding: 5px     !important;
+}
+ul.videoCssMenu li ul li:hover > a, ul.videoCssMenu li ul li a:hover {
+	background-color: #999999;
+	border-color: #fff;
+	padding: 5px;
+	color: #000;
+}

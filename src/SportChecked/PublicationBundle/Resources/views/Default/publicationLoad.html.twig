@@ -1,0 +1,9 @@
+{% if publications %}
+    {% for publication in publications %}
+            {% include "PublicationBundle:Default:publicationPrint.html.twig"  
+                        with {'publication'         : publication.publication,
+                              'actionUser'          : publication.user,
+                              'lastAction'          : publication.lastaction
+            }%}
+    {% endfor %}
+{% endif %}

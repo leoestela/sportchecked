@@ -1,0 +1,35 @@
+list_checked:
+    pattern: /list/{listId}/
+    defaults: { _controller: ContactBundle:Default:listChecked }
+
+list_menu_elements:
+    pattern: /list/menu/elements/
+    defaults: { _controller: ContactBundle:Default:listMenuElements }
+    
+list_new:
+    pattern:  /list/list/new/
+    defaults: { _controller: ContactBundle:Default:listNew }
+
+list_new_from_contact:
+    pattern:  /list/new/{contactSlug}/
+    defaults: { _controller: ContactBundle:Default:listNewFromContact }
+
+list_edit:
+    pattern:  /list/{listId}/edit/
+    defaults: { _controller: ContactBundle:Default:listEdit }
+    
+list_advice:
+    pattern:  /list/{listId}/advice/
+    defaults: { _controller: ContactBundle:Default:listAdvice }    
+    
+list_delete:
+    pattern:  /list/{listId}/delete/
+    defaults: { _controller: ContactBundle:Default:listDelete }     
+    
+list_add_member:
+    pattern:  /list/{listId}/add/{contactId}/
+    defaults: { _controller: ContactBundle:Default:listAddMember }    
+    
+list_delete_member:
+    pattern:  /list/{listId}/delete/{contactId}/
+    defaults: { _controller: ContactBundle:Default:listDeleteMember }     

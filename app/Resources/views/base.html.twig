@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}SportChecked{% endblock %}</title>     
+        {% stylesheets  '@PublicationBundle/Resources/public/css/normalize.css'
+                        '@PublicationBundle/Resources/public/css/comun.css'
+                        '@PublicationBundle/Resources/public/css/menu.css'
+                        '@PublicationBundle/Resources/public/css/colorbox.css'
+                        output='css/frontend.css'%}
+        <link href="{{ asset_url }}" rel="stylesheet" type="text/css" />
+        {% endstylesheets %}
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        <header id="header">
+            <div id="header-main">
+                {% block header %}
+                <div id="header-left">
+                    <div id="header-left-content">
+                    {% block headerleft %}
+                            {{ render(controller('PublicationBundle:Default:publicationSearchForm')) }}
+                    {% endblock %}      
+                    </div>
+                </div>
+                <div id="header-center">
+                    <div id="header-center-content">
+                    {% block headercenter %}	
+                            <a href="{{ path('index') }}">
+                                <img id="header-logo" src="{{ asset('bundles/publication/images/app/logo.png') }}" alt="Inicio" title="Inicio"/>
+                            </a>
+                    {% endblock %}
+                    </div>
+                </div>
+                <div id="header-right">
+                    <div id="header-actions">
+                    {% block headerright %}
+                    {% if not is_granted('ROLE_USER') %}
+                    <ul>
+                        <li>
+                            <div class="icon-action">
+                                <a href="{{ path('login') }}">
+                                    <img src="{{ asset('bundles/publication/images/app/play-blue.png') }}" title="Entrar"/>
+                                    <span>Iniciar sesión</span>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="icon-action">
+                                <a href="{{ path('signup') }}">
+                                    <img src="{{ asset('bundles/publication/images/app/record-orange.png') }}" title="Registrarse"/>
+                                    <span>Registrarse</span>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="icon-action">
+                                <a href="{{ path('static_page', { 'page': 'help' }) }}">
+                                    <img src="{{ asset('bundles/publication/images/app/info-blue.png') }}" title="Ayuda"/>
+                                    <span>Ayuda</span>
+                                </a>
+                            </div>
+                        </li>                        
+                    </ul>
+                    {% else %}
+                    <div class="icon-action">                       
+                        <a href="{{ path('app_modal_add_object') }}" class="iframe">
+                            <img src="{{ asset('bundles/publication/images/app/add-blue.png') }}" alt="Añadir" title="Añadir"/>
+                        </a>
+                    </div>
+                    <div class="icon-action">
+                        <ul id="nav">
+                            <li class="nav-li">                        
+                                <div class="nav-li-avatar">
+                                    {% if app.user.photo %}
+                                        <img src="{{ asset('uploads/user/images/' ~app.user.photo) }}"/>
+                                    {% else %}
+                                        <img src="{{ asset('bundles/user/images/default.png') }}"/>
+                                    {% endif %}
+                                </div>
+                                <p class="nav-li-user"><strong>{{ app.user.name }}</strong></p>      
+                                <ul id="subnav" class="subnav-ul">
+                                    <li class="subnav-li">
+                                        <a href="{{ url('user_publications', { 'userSlug': app.user.slug }) }}"><strong>Publicaciones</strong></a>
+                                    </li>
+                                    <li class="subnav-li">
+                                        <a href="{{ url('user_boards', { 'userSlug': app.user.slug }) }}"><strong>Carpetas</strong></a>
+                                    </li>
+                                    <li class="subnav-li">
+                                        <a href="{{ url('user_sports', { 'userSlug': app.user.slug }) }}"><strong>Deportes</strong></a>
+                                    </li>
+                                    <li class="subnav-li">
+                                        <a href="{{ url('user_followers', { 'userSlug': app.user.slug }) }}"><strong>Seguidores</strong></a>
+                                    </li>
+                                    <li class="subnav-li">
+                                        <a href="{{ url('user_following', { 'userSlug': app.user.slug }) }}"><strong>Siguiendo</strong></a>
+                                    </li>
+                                    <li class="subnav-li underline">
+                                        <a href="{{ url('user_lists', { 'userSlug': app.user.slug }) }}"><strong>Listas</strong></a>
+                                    </li>
+                                    <li class="subnav-li"><a href="{{ path('profile') }}"><strong>Configuración</strong></a></li>
+                                    <li class="subnav-li"><a href="{{ path('static_page', { 'page': 'help' }) }}"><strong>Ayuda</strong></a></li>
+                                    <li class="subnav-li"><a href="{{ path('logout') }}"><strong>Salir</strong></a></li>
+                                </ul>
+                            </li>    
+                        </ul>    
+                    </div> 
+                    <div class="icon-action">                                    
+                        <a href="{{ url('message_new') }}" class="iframe" style="margin-top: 1px;">
+                            <img src="{{ asset('bundles/publication/images/app/mail.png') }}" alt="Feedback" title="Feedback"/>
+                        </a>
+                     </div>       
+                    {% endif %}
+                    {% endblock %}
+                    </div>
+                </div>
+            {% endblock %}
+            </div>
+            <div id="header-menu">{% block headermenu %}{% endblock %}</div>
+        </header>
+        <div id="wrapper">
+            {% block container %}{% endblock %}
+        </div>
+        {% block footer %}
+        <footer id="footer">		
+            <div id="footer-left">
+            </div>
+            <div id="footer-center">
+                <div id="footer-center-content">{% block footercenter %}{% endblock %}</div>
+            </div>
+            <div id="footer-right">
+                <div id="footer-right-content">
+                    <div id="footer-back">
+                        <p><strong><img id="top-arrow" src="{{ asset('bundles/publication/images/app/top-arrow.png') }}"/> Volver arriba</strong></p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        {% endblock %}
+            {% javascripts '@PublicationBundle/Resources/public/js/*' 
+                            output='js/frontend.js'%}
+            <script src="{{ asset_url }}" type="text/javascript"></script>
+            {% endjavascripts %}
+
+        <script type="text/javascript">
+            $(document).ready(function()
+            {
+                /* Back to top button */
+                backToTop();
+                modalPages();
+                menuSlidedown();
+            });
+        </script>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

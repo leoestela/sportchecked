@@ -1,0 +1,7 @@
+modality_checked:
+    pattern: /modality/{modalityId}/
+    defaults: { _controller: FeatureBundle:Default:modalityChecked }
+    
+modality_menu_elements:
+    pattern: /modality/menu/elements/
+    defaults: { _controller: FeatureBundle:Default:modalityMenuElements }    

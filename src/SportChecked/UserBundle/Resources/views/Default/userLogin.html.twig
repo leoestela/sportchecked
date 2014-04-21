@@ -1,0 +1,46 @@
+{% extends "UserBundle:Default:layout.html.twig" %}
+
+{% block container %}
+<div id="wrapper-container-login" class="centered">
+    <div class="form-title">
+        <h1>Iniciar sesión en SportChecked</h1>
+    </div>    
+    <div id="container-login">
+    {% block elements %}
+    <form action="{{ path('login_check') }}" method="post">
+        <div class="form-main centered">
+            <div class="form-row-xl">
+                <div class="form-label">
+                    <label for="username"><strong>Usuario</strong></label>
+                </div>
+                <div class="form-data">
+                    <input class="input-xl" type="text" id="username" name="_username" value="{{ last_username }}"/>
+                </div>
+            </div>
+            <div class="form-row-xl">
+                <div class="form-label">
+                    <label for="password"><strong>Contraseña</strong></label>
+                </div>
+                <div class="form-data">
+                    <input class="input-xl" type="password" id="password" name="_password"/>
+                </div>
+            </div>
+            <div class="form-row-s">
+                <input type="checkbox" id="no_cerrar" name="_remember_me"/>
+                <label for="no_cerrar">Recordar mis datos</label>	
+            </div>    
+            <div class="form-row-s">
+                <p>Si aun no formas parte de SportChecked puedes <a href="{{ path('signup') }}">registrarte aquí.</a></p>
+            </div>
+            {% if error %}
+            <div class="form-row-xl" style="color:red;">{{ error.message }}</div>
+            {% endif %}
+        </div>
+        <div class="form-submit centered">
+            <button id="submit" type="submit" name="login" class="button-blue button-size-xl">Iniciar sesión</button>
+        </div>
+    </form>
+    {% endblock %}
+    </div>
+</div>
+{% endblock %}

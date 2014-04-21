@@ -1,0 +1,32 @@
+<ul class='ws_css_cb_menum' style='width:{{ size }}px;'>
+	<li>
+		<a href="{{ url('usersport_checked', { 'userSportId': all }) }}"><strong>Todos</strong>
+		
+		{% if checked == all %}
+			<img src="{{ asset('bundles/publication/images/app/check.png') }}" alt=">" border="0" height="5" width="5"/>
+		{% endif %}
+		
+		</a>
+	</li>
+        {% if userSports|length > 0 %}
+            <li>
+                    <a href="{{ url('usersport_checked', { 'userSportId': my }) }}"><strong>Mis deportes</strong>
+
+                    {% if checked == my %}
+                            <img src="{{ asset('bundles/publication/images/app/check.png') }}" alt=">" border="0" height="5" width="5"/>
+                    {% endif %}
+
+                    </a>
+            </li>
+        {% endif %}
+	{% for userSport in userSports %}
+	<li>
+		<a href="{{ url('usersport_checked', { 'userSportId': userSport.sport.id }) }}">{{ userSport.sport.name }}
+		
+		{% if userSport.sport.id == checked %}
+			<img src="{{ asset('bundles/publication/images/app/check.png') }}" alt=">" border="0" height="5" width="5"/>
+		{% endif %}
+		</a>
+	</li>
+	{% endfor %}
+</ul>

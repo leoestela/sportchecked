@@ -1,0 +1,4 @@
+<form action="{{ path('publication_search') }}" method="post" {{form_enctype(form) }}>
+    {{ form_widget(form.text) }}
+    <button type="submit" name="search">Buscar</button>    
+</form>

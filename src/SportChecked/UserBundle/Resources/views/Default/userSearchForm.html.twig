@@ -1,0 +1,4 @@
+<form action="{{ path('user_wellcome_search') }}" method="post" {{form_enctype(form) }}>
+    {{ form_widget(form.text) }}
+    <button type="submit" name="search" class="button-grey">Buscar personas</button>    
+</form>

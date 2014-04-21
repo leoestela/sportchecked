@@ -1,0 +1,150 @@
+<?php
+
+namespace SportChecked\UserBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * UserSport
+ *
+ * @ORM\Table()
+ * @ORM\Entity
+ */
+class UserSport {
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="SportChecked\UserBundle\Entity\User")
+     */
+    private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="SportChecked\SportBundle\Entity\Sport")
+     */
+    private $sport;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="starts", type="datetime")
+     */
+    private $starts;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="ends", type="datetime")
+     */
+    private $ends;
+
+    /**
+     * Set default values
+     *
+     * @return UserSport
+     */
+    public function __construct() {
+        $this->starts = new \DateTime();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId() {
+        return $this->id;
+    }
+
+    /**
+     * Set user
+     *
+     * @param string $user
+     * @return UserSport
+     */
+    public function setUser(\SportChecked\UserBundle\Entity\User $user) {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return string 
+     */
+    public function getUser() {
+        return $this->user;
+    }
+
+    /**
+     * Set sport
+     *
+     * @param string $sport
+     * @return UserSport
+     */
+    public function setSport(\SportChecked\SportBundle\Entity\Sport $sport) {
+        $this->sport = $sport;
+
+        return $this;
+    }
+
+    /**
+     * Get sport
+     *
+     * @return string 
+     */
+    public function getSport() {
+        return $this->sport;
+    }
+
+    /**
+     * Set starts
+     *
+     * @param \DateTime $starts
+     * @return UserSport
+     */
+    public function setStarts($starts) {
+        $this->starts = $starts;
+
+        return $this;
+    }
+
+    /**
+     * Get starts
+     *
+     * @return \DateTime 
+     */
+    public function getStarts() {
+        return $this->starts;
+    }
+
+    /**
+     * Set ends
+     *
+     * @param \DateTime $ends
+     * @return UserSport
+     */
+    public function setEnds($ends) {
+        $this->ends = $ends;
+
+        return $this;
+    }
+
+    /**
+     * Get ends
+     *
+     * @return \DateTime 
+     */
+    public function getEnds() {
+        return $this->ends;
+    }
+
+}

@@ -1,0 +1,79 @@
+{% extends "UserBundle:Default:layout.html.twig" %}
+
+{% block container %}
+<div id="wrapper-container-login" class="centered">
+    <div class="form-title">
+        <h1>¿Nuevo en SportChecked?</h1> 
+        <h1>Regístrate ahora. Es gratis</h1>
+    </div>
+    <div id="container-login">
+    {% block elements %}
+    <form action="{{ path('signup') }}" method="post">
+        <div class="form-main centered">
+            <div class="form-row-xl">
+                <div class="form-label">
+                    <label for="name"><strong>Nombre completo</strong></label>
+                </div>
+                <div class="form-data form-input-xl">
+                    {{ form_widget(form.name) }}
+                </div>
+            </div>
+            <div class="form-row-xl">
+                <div class="form-label">
+                    <label for="email"><strong>Correo electrónico</strong></label>
+                </div>
+                <div class="form-data form-input-xl">
+                    {{ form_widget(form.email) }}
+                </div>
+            </div>
+            <div class="form-row-xl">
+                <div class="form-label">
+                    <label for="username"><strong>Escoge tu nombre de usuario</strong></label>
+                </div>
+                <div class="form-data form-input-xl">
+                    {{ form_widget(form.username) }}
+                </div>
+            </div>
+            <div class="form-row-xl">
+                <div class="form-label">
+                    <label for="password"><strong>Contraseña</strong></label>
+                </div>
+                <div class="form-data form-input-xl">
+                    {{ form_widget(form.password) }}
+                </div>
+            </div>
+            <div class="form-row-s">
+                <p>Al registrarte estás aceptando los <strong>términos</strong> y <strong>condiciones de uso</strong> de la página.</p>	
+            </div>                
+            <div class="form-row-xl" style="color:red;">                        
+                {{ form_rest(form) }}
+                {{ form_errors(form) }}	
+            </div>
+        </div>
+        <div class="form-submit centered">
+            <input id="submit" class="button-yellow button-size-xl" type="submit" name="signup" 
+                   value="Regístrate en SportChecked" style="float: right;"/>
+        </div>
+    </form>
+    {% endblock %}
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %} 
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#conditions').click(function(){
+                   if($("#conditions").is(':checked')) { 
+                        $('#submit').removeAttr('disabled');
+                        $('#submit').attr("class", "button-default button-size-xl button-color-yellow");
+                        $('#submit').attr('value', 'Registrarse en SportChecked');
+                   } else { 
+                       $('#submit').attr('disabled','disabled');
+                       $('#submit').attr('class', 'button-default button-size-xl');
+                       $('#submit').attr('value', 'Debes aceptar términos y condiciones');
+                   }
+            });
+        });
+    </script>
+{% endblock %}    

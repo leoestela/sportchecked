@@ -1,0 +1,36 @@
+<div class="list element" id="{{list.id}}">
+    <div class="element-title border-b-grey-m">
+        <p>
+            <a href="{{ url('user_list_members', { 'userSlug':  list.user.slug, 'listId': list.id }) }}">
+                {{ list.name }}
+            </a>
+        </p>
+    </div> 
+    <div class="element-row border-t-grey-l">     
+        <a href="{{ url('user_list_members', { 'userSlug': list.user.slug, 'listId': list.id }) }}">    
+            <div class="element-image centered">
+                <div class="element-hidden centered">
+                    {% if list.photo %}
+                    <img src="{{ asset('uploads/contact/contactlist/images/' ~list.photo) }}" title="{{ list.name }}" border="0"/>
+                    {% endif %} 
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="element-row border-b-grey-m"> 
+        <div class="element-statistics">
+            <div class="element-info-xl">
+                <a href="#"><strong>Miembros</strong></a>
+                <p><span id="numMembers{{ list.id }}">{{ list.nmembers }}</span></p>
+            </div>
+        </div>
+    </div>    
+    <div class="element-button centered border-t-grey-l">
+        {% if app.user == list.user %}
+            <a id="editList{{ list.id }}"
+                href="{{ url('list_edit', { 'listId': list.id }) }}" class="button-grey iframe">
+                Editar lista
+            </a>
+        {% endif %}
+    </div>
+</div>

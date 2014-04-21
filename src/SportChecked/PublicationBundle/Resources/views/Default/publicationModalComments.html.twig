@@ -1,0 +1,89 @@
+{% extends "PublicationBundle:Default:modalLayout.html.twig" %}
+
+{% block stylesheets %}
+<link href="{{ asset('bundles/publication/css/publication.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block container %}
+<div id="wrapper-container-modal" class="centered">
+    <div id="container-modal-light-xl" class="centered">
+    {% block actions %}
+            <div class="pub-modal-actions">
+                <h2>¿Comentar esta publicación?</h2>
+            </div>
+    {% endblock %}
+    </div>
+    <div id="container-modal-xl" class="centered">
+    {% block elements %}
+        <div style="float:left;">    
+        {% include "PublicationBundle:Default:publicationPrint.html.twig"  
+                    with {'publication' : publication, 
+                          'actionUser'  : publication.user,
+                          'lastAction'  : null
+        }%}
+        </div>        
+        <div class="pub-comments bkg-grey-m border-grey-m color-grey-m">
+            <div class="pub-comments-row border-b-grey-m">
+                <div class="pub-actions-avatar">
+                    <a href="#">
+                        {% if app.user.photo %}
+                            <img src="{{ asset('uploads/user/images/' ~app.user.photo) }}"/>
+                        {% else %}
+                            <img src="{{ asset('bundles/user/images/default.png') }}"/>
+                        {% endif %}
+                    </a>
+                </div>
+                <div class="pub-actions-form">
+                    <form id="newComment" action="{{ path('publication_modal_comments', { 'publicationId': publication.id }) }}" method="post" {{form_enctype(form) }}>
+                        <div class="form_row">
+                            {{ form_widget(form.comment) }}
+                            <button class="button-blue pub-modal-button-right" type="submit">Enviar comentario
+                            </button>
+                        </div>
+                        <div class="form_row">
+                        {{ form_rest(form) }}
+                        {{ form_errors(form) }}			
+                        </div>		
+                    </form>
+                </div>
+            </div>            
+            <div class="pub-comments-row border-t-grey-l border-b-grey-m">
+                <strong class="pub-comments-total">Comentarios: <span id="totalComments">{{ publication.ncomments }}</span></strong>
+            </div>
+            {% if publication.comments|length > 0 %}
+		{% for comment in publication.comments %}
+                <div id ="divComment{{ comment.id }}" class="pub-comments-row border-t-grey-l border-b-grey-m">
+                    <div class="pub-comments-avatar">
+                        <a href="{{ path('login') }}">
+                            {% if app.user.photo %}
+                                <img src="{{ asset('uploads/user/images/' ~comment.user.photo) }}"/>
+                            {% else %}
+                                <img src="{{ asset('bundles/user/images/default.png') }}"/>
+                            {% endif %}                            
+                        </a>
+                    </div>
+                    <div class="pub-comments-text">
+                        <p><a href="#"><strong class="pub-comments-username">{{ comment.user.name }}</strong></a></p>
+                        <p>{{ comment.comment |nl2br }} </p>
+                    </div>
+                    <div class="pub-comments-delete">
+                        {% if comment.user == app.user %}
+                        <a href="{{ url('publication_comment_delete', { 'publicationId': publication.id, 'commentId': comment.id }) }}" class="deleteComment" title="Borrar">
+                            <img class="button-left-img" src="{{ asset('bundles/publication/images/app/close-grey.png') }}"/>
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}            
+            {% endif %}				
+            <div class="pub-comments-row border-t-grey-l"></div>    
+        </div>
+    {% endblock %}
+    </div>
+</div>
+{% endblock %}
+{% block javascripts %}
+<script type="text/javascript">
+    deleteComment();
+</script>
+{% endblock %}

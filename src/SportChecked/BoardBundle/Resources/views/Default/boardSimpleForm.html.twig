@@ -1,0 +1,11 @@
+<form id="newBoard" action="{{ path('board_simple_form', { 'id': id }) }}" method="post" {{form_enctype(form) }}>
+    <div class="form_row">
+	        {{ form_label(form.name) }}
+		{{ form_widget(form.name) }}
+            <button class="button-default" type="submit">+</button>
+    </div>
+    <div class="form_row">
+            {{ form_rest(form) }}
+            {{ form_errors(form) }}			
+    </div>		
+</form>

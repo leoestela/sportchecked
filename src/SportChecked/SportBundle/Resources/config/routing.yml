@@ -1,0 +1,51 @@
+sport_checked:
+    pattern: /sport/{sportId}/
+    defaults: { _controller: SportBundle:Default:sportChecked } 
+    
+sport_menu_elements:
+    pattern: /sport/menu/elements/
+    defaults: { _controller: SportBundle:Default:sportMenuElements }     
+    
+usersport_checked:
+    pattern: /usersport/{userSportId}/
+    defaults: { _controller: SportBundle:Default:userSportChecked } 
+    
+usersport_menu_elements:
+    pattern: /usersport/menu/elements/
+    defaults: { _controller: SportBundle:Default:userSportMenuElements }    
+
+sport_publications:
+    pattern: /sport/{sportId}/publications/
+    defaults: { _controller: SportBundle:Default:sportPublications } 
+    
+sport_publications_load:
+    pattern: /sport/{sportId}/publications/load/{lastElement}
+    defaults: { _controller: SportBundle:Default:sportPublicationsLoad }     
+    
+sport_modality_publications:
+    pattern: /sport/{sportId}/publications/modality/{modalityId}
+    defaults: { _controller: SportBundle:Default:sportPublications } 
+    
+sport_modality_publications_load:
+    pattern: /sport/{sportId}/{modalityId}/publications/load/{lastElement}
+    defaults: { _controller: SportBundle:Default:sportPublicationsLoad }     
+    
+sport_wellcome:
+    pattern: /intro/sport/wellcome/
+    defaults: { _controller: SportBundle:Default:sportWellcome }    
+
+sport_wellcome_load:
+    pattern: /intro/sport/wellcome/load/{lastElement}
+    defaults: { _controller: SportBundle:Default:sportWellcomeLoad } 
+    
+sport_search:
+    pattern: /search/sport/search/
+    defaults: { _controller: SportBundle:Default:sportSearch }    
+    
+sport_search_button:
+    pattern: /sport/search/button/
+    defaults: { _controller: SportBundle:Default:sportSearchButton }   
+    
+sport_search_load:
+    pattern: /sport/search/load/{lastElement}
+    defaults: { _controller: SportBundle:Default:sportSearchLoad }     

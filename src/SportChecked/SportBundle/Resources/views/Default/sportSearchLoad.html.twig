@@ -1,0 +1,5 @@
+{% if sports %}
+    {% for sport in sports %}
+            {% include "SportBundle:Default:sportPrint.html.twig" with {'sport': sport, 'starts': null}%}
+    {% endfor %}
+{% endif %}

@@ -1,0 +1,66 @@
+{% extends "UserBundle:Default:layout.html.twig" %}
+
+{% block stylesheets %}
+<link href="{{ asset('bundles/publication/css/publication.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('bundles/user/css/user.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block headermenu %}
+    {% include "UserBundle:Default:userMenu.html.twig" with { 'option': 1, 'user': user }%}
+{% endblock %}
+
+{% block info %}
+    {% include "UserBundle:Default:userInfo.html.twig" with { 'user'   : user }%}
+<div class="container-title">
+    <p class="user-container-title">
+        <strong>
+            {{ user.npublications }} {% if user.npublications == 1 %}publicación{% else %}publicaciones{% endif %}
+        </strong>
+    </p>
+</div>
+{% endblock %}
+
+{% block elements %}
+    {% if app.user == user %}
+        {% include "PublicationBundle:Default:publicationPrintNew.html.twig"%}
+    {% endif %}
+    {% for publication in publications %}
+        {% include "PublicationBundle:Default:publicationPrint.html.twig"  
+                    with {'publication'         : publication.publication,
+                          'actionUser'          : publication.publication.user,
+                          'lastAction'          : publication.lastaction
+        }%}
+    {% endfor %}
+{% endblock %}
+
+{% block footercenter %}
+    <div id="footer-loading">
+        <img src="{{ asset('bundles/publication/images/app/loading.gif') }}"/>
+    </div>
+{% endblock %}
+
+{% block javascripts %}        
+<script type="text/javascript">
+    /* Load publications with masonry */
+    $( document ).ready(function() {
+        var $container = $('#container');
+        var $elementClass = '.pub';
+        var $elementWidth = 336;
+        var $urlIn = '{{ url('user_publications_load', { 'userSlug': user.slug, 'lastElement': '+lastElement+' }) }}';
+        var $messageOut = 'No hay más publicaciones para mostrar';
+
+        $container.imagesLoaded(function() {
+            $container.masonry({
+                itemSelector: $elementClass,
+                columnWidth: $elementWidth,
+                isFitWidth: true
+            });
+        });
+        /* Loading more publications */
+        loadElements($container, $elementClass, $urlIn, $messageOut);
+        /* Show and hide action buttons for publications */
+        publicationActions($container);
+        userActions($container);  
+    });        
+</script>
+{% endblock %}

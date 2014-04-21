@@ -1,0 +1,63 @@
+publication_load:
+    pattern: /publication/load/{lastElement}
+    defaults: { _controller: PublicationBundle:Default:publicationLoad } 
+
+publication_new:
+    pattern: /publication/new/
+    defaults: { _controller: PublicationBundle:Default:publicationNew }
+    
+publication_edit:
+    pattern: /publication/{publicationId}/edit/
+    defaults: { _controller: PublicationBundle:Default:publicationEdit }    
+    
+publication_modal_share:
+    pattern: /publication/{publicationId}/modal-share/
+    defaults: { _controller: PublicationBundle:Default:publicationModalShare }
+
+publication_share:
+    pattern: /publication/{publicationId}/share/
+    defaults: { _controller: PublicationBundle:Default:publicationShare }
+
+publication_unshare:
+    pattern: /publication/{publicationId}/unshare/
+    defaults: { _controller: PublicationBundle:Default:publicationUnshare }
+
+publication_modal_save:
+    pattern: /publication/{publicationId}/modal-save/
+    defaults: { _controller: PublicationBundle:Default:publicationModalSave }
+
+publication_save:
+    pattern: /publication/{publicationId}/board/{boardId}/save/
+    defaults: { _controller: PublicationBundle:Default:publicationSave }
+
+publication_delete:
+    pattern: /publication/{publicationId}/delete/
+    defaults: { _controller: PublicationBundle:Default:publicationDelete }
+    
+publication_modal_comments:
+    pattern: /publication/{publicationId}/modal-comments/
+    defaults: { _controller: PublicationBundle:Default:publicationModalComments }
+    
+publication_comment_delete:
+    pattern: /publication/{publicationId}/comment/{commentId}/delete/
+    defaults: { _controller: PublicationBundle:Default:publicationDeleteComment }
+
+publication_search:
+    pattern: /publication/search/
+    defaults: { _controller: PublicationBundle:Default:publicationSearch }    
+    
+publication_search_load:
+    pattern: /publication/search/load/{lastElement}
+    defaults: { _controller: PublicationBundle:Default:publicationSearchLoad }  
+    
+publication_search_button:
+    pattern: /publication/search-button/
+    defaults: { _controller: PublicationBundle:Default:publicationSearchButton }      
+    
+app_modal_add_object:
+    pattern: /modal-add-object/
+    defaults: { _controller: PublicationBundle:Default:appModalAddObject }
+
+app_modal_onload:
+    pattern: /modal-onload/
+    defaults: { _controller: PublicationBundle:Default:appModalOnload }    

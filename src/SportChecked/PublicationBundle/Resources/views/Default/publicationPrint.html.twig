@@ -1,0 +1,178 @@
+<div class="pub bkg-grey-m border-grey-m color-grey-m" id="{{ publication.id }}{% if (lastAction)%}_{{ lastAction |date('YmdHis') }}{% endif %}">
+    <div class="pub-top bkg-grey-l border-b-grey-m">
+        <div class="pub-sport">
+            <a href="{% if publication.modality %}{{ url('sport_modality_publications', { 'sportId': publication.sport.id, 'modalityId': publication.modality }) }}{% else %}{{ url('sport_publications', { 'sportId': publication.sport.id }) }}{% endif %}">
+                <strong>{{ publication.sport.name }}</strong>
+                {% if publication.modality == 'female' %}
+                <img src="{{ optipng('bundles/publication/images/app/female.png') }}"/> 
+                {% elseif publication.modality == 'male' %}    
+                <img src="{{ optipng('bundles/publication/images/app/male.png') }}"/>
+                {% elseif publication.modality == 'mixed' %}
+                <img src="{{ optipng('bundles/publication/images/app/female.png') }}"/> 
+                <img src="{{ optipng('bundles/publication/images/app/male.png') }}"/>    
+                {% endif %}    
+            </a>
+        </div>	
+        <div class="pub-marks">
+        {% if is_granted('ROLE_USER') %}
+            {% if publication.actions %}
+                {% if publication.actions|length > 0 %}
+                    {% for status in publication.actions %}
+                        {% if loop.first %}
+                            {% if status.published %}
+                                <span>	
+                                    <img src="{{ optipng('bundles/publication/images/app/check-green.png') }}"/>
+                                </span>
+                                        {% else %}
+                                <span class="spanSaved{{ publication.id }}" {% if not status.saved %}style="display:none;"{% endif %}>	
+                                    <img src="{{ optipng('bundles/publication/images/app/check-orange.png') }}"/>
+                                </span>
+                                <span class="spanShared{{ publication.id }}" {% if not status.shared %}style="display:none;"{% endif %}>	
+                                    <img src="{{ optipng('bundles/publication/images/app/check-blue.png') }}"/>
+                                </span>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <span class="spanSaved{{ publication.id }}" style="display:none;">	
+                        <img src="{{ optipng('bundles/publication/images/app/check-orange.png') }}"/>
+                    </span>
+                    <span class="spanShared{{ publication.id }}" style="display:none;">	
+                        <img src="{{ optipng('bundles/publication/images/app/check-blue.png') }}"/>
+                    </span>
+                {% endif %}
+            {% endif %}
+        {% endif %}
+        </div>
+    </div>
+    <div class="pub-title color-black border-t-grey-l">
+        <p>{{ publication.title }}</p>
+    </div>
+    <div class="pub-subtitle border-b-grey-m">
+        <p>{{ publication.subtitle }}</p>
+    </div>
+    <div class="pub-image border-t-grey-l">
+        <div class="pub-image-content border-grey-m centered">
+            <div class="pub-hidden centered">
+                {% if publication.photo %}
+                <img class="centered" src="{{ asset('uploads/publication/images/' ~publication.photo) }}"/>
+                {% endif %}
+                <div  class="pub-actions" id="pubact{{ publication.id }}">
+                    <div  class="pub-actions-left">
+                        <a id="buttonGo{{ publication.id }}"  href="{{ publication.link }}" class="button-grey button-size-xl" target="_blank">
+                            <img src="{{ optipng('bundles/publication/images/app/go-green.png') }}"/> Ir
+                        </a>
+                    </div>
+                    <div  class="pub-actions-right">
+                    {% set vModifyCreated,vShare,vUnshare,vSave,vModifySaved  = 'false','false', 'false','false','false' %}    
+                    {% if is_granted('ROLE_USER') %}
+                        {% if publication.actions %}
+                            {% if publication.actions|length > 0 %}
+                                {% for status in publication.actions %}
+                                    {% if loop.first %}
+                                        {% if status.published %}
+                                            {% set vModifyCreated = 'true' %}
+                                        {% else %}
+                                            {% if status.shared %}
+                                                {% set vUnshare = 'true' %}
+                                            {% else %}
+                                                {% set vShare = 'true' %}
+                                            {% endif %}>
+                                            {% if status.saved %}
+                                                {% set vModifySaved = 'true' %}
+                                            {% else %}
+                                                {% set vSave = 'true' %}
+                                            {% endif %}
+                                        {% endif %}
+                                        {% set vComments = 'true' %}
+                                    {% endif %}
+                                {% endfor %}
+                            {% else %}
+                                {% set vShare, vSave = 'true','true' %}
+                            {% endif %}
+                        {% else %}
+                            {% set vShare, vSave = 'true','true' %}
+                        {% endif %}
+                        {% if vModifyCreated == 'true' %} 
+                            <a href="{{ url('publication_edit', { 'publicationId': publication.id }) }}" 
+                               class="buttonEdit{{ publication.id }} button-grey iframe">
+                                <img class="button-left-img" src="{{ optipng('bundles/publication/images/app/check-grey.png') }}"/>Modificar
+                            </a>
+                        {% else %}        
+                            <a href="{{ url('publication_modal_share', { 'publicationId': publication.id }) }}" 
+                               class="buttonShare{{ publication.id }} button-grey iframe"
+                               {% if vShare != 'true' %}style="display:none;"{% endif %}>
+                                    <img class="button-left-img" src="{{ optipng('bundles/publication/images/app/check-blue.png') }}"/> Compartir
+                            </a>
+                            <a href="{{ url('publication_unshare', { 'publicationId': publication.id }) }}" 
+                               class="buttonUnshare buttonUnshare{{ publication.id }} button-grey iframe" 
+                               {% if vUnshare != 'true' %}style="display:none;"{% endif %}>No compartir
+                            </a>
+                            </br>
+                            <a id="buttonSave{{ publication.id }}"  
+                               href="{{ url('publication_modal_save', { 'publicationId': publication.id }) }}" 
+                               class="buttonSave{{ publication.id }} button-grey iframe"
+                               {% if vSave != 'true' %}style="display:none;"{% endif %}>
+                                    <img class="button-left-img" src="{{ optipng('bundles/publication/images/app/check-orange.png') }}"/> Guardar
+                            </a>
+                            <a href="{{ url('publication_modal_save', { 'publicationId': publication.id }) }}" 
+                               class="buttonEdit{{ publication.id }} button-grey iframe" {% if vModifySaved != 'true' %}style="display:none;"{% endif %}>
+                                <img class="button-left-img" src="{{ optipng('bundles/publication/images/app/check-grey.png') }}"/>Modificar
+                            </a>
+                        {% endif %}
+                        </br>    
+                        <a href="{{ url('publication_modal_comments', { 'publicationId': publication.id }) }}" class="button-grey ajax">
+                           <img class="button-left-img" src="{{ optipng('bundles/publication/images/app/check-grey.png') }}"/> Comentar
+                        </a>    
+                    {% else %}
+                        <a href="{{ path('login') }}" class="buttonShare{{ publication.id }} button-grey">
+                            <img class="button-left-img" src="{{ optipng('bundles/publication/images/app/check-blue.png') }}"/> Compartir
+                        </a>
+                        </br>
+                        <a href="{{ path('login') }}" class="buttonSave{{ publication.id }} button-grey">
+                            <img class="button-left-img" src="{{ optipng('bundles/publication/images/app/check-orange.png') }}"/> Guardar
+                        </a>
+                        </br>
+                        <a href="{{ path('login') }}" class="button-grey">
+                            <img class="button-left-img" src="{{ optipng('bundles/publication/images/app/check-grey.png') }}"/> Comentar
+                        </a>
+                    {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pub-created border-b-grey-l-dashed">
+        <div class="pub-user">
+            <div class="pub-user-avatar">
+                <a href="{{ url('user_publications', { 'userSlug': actionUser.slug }) }}">
+                    {% if actionUser.photo %}
+                        <img src="{{ asset('uploads/user/images/' ~actionUser.photo) }}" alt="No Photo" border="0"/>
+                    {% else %}
+                        <img src="{{ optipng('bundles/user/images/default.png') }}"/>
+                    {% endif %} 
+                </a>
+            </div>
+            <p>
+                {% if actionUser.id != publication.user.id %}
+                    A través de  
+                {% endif %}
+                <a href="{{ url('user_publications', { 'userSlug': actionUser.slug }) }}">
+                    <strong>{{ actionUser.name }}</strong>  
+                </a>
+            </p>
+        </div>
+        <div class="pub-date">
+            {{ publication.created |date('d/m/Y H:i:s') }}
+        </div>
+    </div>
+    <div class="pub-text border-t-grey-l-dashed border-b-grey-m">
+        <p>{{ publication.body |nl2br }} </p>
+    </div>
+    <div class="pub-buttons bkg-grey-l border-t-grey-l">
+        Compartido: <span class="numShared{{ publication.id }}">{{ publication.nshares }}</span>
+        · Guardado: <span class="numSaved{{ publication.id }}">{{ publication.nsaves }}</span>
+        · Comentarios: <span class="numComments{{ publication.id }}">{{ publication.ncomments }}</span>
+    </div>
+</div>
+

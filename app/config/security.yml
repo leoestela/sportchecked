@@ -1,0 +1,26 @@
+security:
+       firewalls:
+            frontend:
+                        pattern:        ^/
+                        anonymous:      ~
+                        form_login:
+                            login_path: login
+                            check_path: login_check
+                        logout:
+                            path: logout
+                            invalidate_session: true
+                        remember_me:
+                            key: checked1455
+                            lifetime: 3600
+
+       access_control:
+                - { path: ^/user/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+                - { path: ^/user/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+                - { path: ^/user/profile, roles: ROLE_USER }
+
+       providers:
+             users:
+                        entity: { class: SportChecked\UserBundle\Entity\User, property: slug }
+
+       encoders:
+                 SportChecked\UserBundle\Entity\User: { algorithm: sha512, iterations: 10 }

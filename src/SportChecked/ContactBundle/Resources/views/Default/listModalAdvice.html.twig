@@ -1,0 +1,19 @@
+{% extends "ContactBundle:Default:modalLayout.html.twig" %}
+
+{% block container %}
+<div id="wrapper-container-login" class="centered">
+    <div class="pub-modal-actions" style="text-align: center;">
+        <h1>¿Quieres eliminar la lista de usuarios "{{ list.name }}"?</h1>
+        <h2>(No podrás deshacer esta acción)</h2>
+    </div>
+    <div id="container-modal-light-footer" class="centered">
+        {% block elements %}
+            <div class="board-modal-buttons" style="padding-top:10px;">
+                <a id="deleteButton" class="button-red" 
+                   href="{{ url('list_delete', { 'listId': list.id }) }}" style="float:right;">Eliminar</a> 
+                <button id="cancelButton" class="button-grey" onclick="history.back();" style="float:left;">Cancelar</button>                        
+            </div>
+        {% endblock %}
+    </div>
+</div>
+{% endblock %}

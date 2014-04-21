@@ -1,0 +1,153 @@
+signup:
+    pattern: /user/signup/
+    defaults: { _controller: UserBundle:Default:signup } 
+
+login:
+    pattern: /user/login/
+    defaults: { _controller: UserBundle:Default:login }
+    
+login_check:
+    pattern: /user/login_check/
+
+logout:
+    pattern: /user/logout/
+    
+intro:
+    pattern: /user/intro/
+    defaults: { _controller: UserBundle:Default:intro }        
+    
+profile:
+    pattern: /user/profile/
+    defaults: { _controller: UserBundle:Default:profile }     
+
+user_wellcome:
+    pattern: /intro/user/wellcome/
+    defaults: { _controller: UserBundle:Default:userWellcome }
+    
+user_wellcome_search:
+    pattern: /intro/user/wellcome/search/
+    defaults: { _controller: UserBundle:Default:userWellcomeSearch }
+    
+user_wellcome_search_load:
+    pattern: /intro/user/wellcome/search/load/{lastElement}/
+    defaults: { _controller: UserBundle:Default:userWellcomeSearchLoad }
+    
+user_wellcome_text_search_load:
+    pattern: /intro/user/wellcome/search/load/{lastElement}/{text}/
+    defaults: { _controller: UserBundle:Default:userWellcomeSearchLoad }    
+    
+user_intro_boards:
+    pattern: /intro/user/boards/
+    defaults: { _controller: UserBundle:Default:userIntroBoards }    
+
+user_intro_boards_load:
+    pattern: /intro/user/boards/load/{lastElement}
+    defaults: { _controller: UserBundle:Default:userIntroBoardsLoad }     
+    
+user_publications:
+    pattern: /user/{userSlug}/
+    defaults: { _controller: UserBundle:Default:userPublications }
+    
+user_publications_load:
+    pattern: /user/{userSlug}/load/{lastElement}
+    defaults: { _controller: UserBundle:Default:userPublicationsLoad }    
+    
+user_boards:
+    pattern: /user/{userSlug}/boards/
+    defaults: { _controller: UserBundle:Default:userBoards }
+    
+user_boards_load:
+    pattern: /user/{userSlug}/boards/load/{lastElement}
+    defaults: { _controller: UserBundle:Default:userBoardsLoad }    
+
+user_board_publications:
+    pattern: /user/{userSlug}/board/{boardId}/
+    defaults: { _controller: UserBundle:Default:userBoardPublications }
+ 
+user_board_publications_load:
+    pattern: /user/{userSlug}/board/{boardId}/load/{lastElement}
+    defaults: { _controller: UserBundle:Default:userBoardPublicationsLoad }    
+    
+user_sports:
+    pattern: /user/{userSlug}/sports/
+    defaults: { _controller: UserBundle:Default:userSports }  
+
+user_sports_load:
+    pattern: /user/{userSlug}/sports/load/{lastElement}
+    defaults: { _controller: UserBundle:Default:userSportsLoad }     
+
+user_follow_sport:
+    pattern: /sport/{sportId}/follow/
+    defaults: { _controller: UserBundle:Default:userFollowSport }
+
+user_unfollow_sport:
+    pattern: /sport/{sportId}/unfollow/
+    defaults: { _controller: UserBundle:Default:userUnfollowSport }
+    
+user_followers:
+    pattern: /user/{userSlug}/followers/
+    defaults: { _controller: UserBundle:Default:userFollowers }  
+   
+user_followers_load:
+    pattern: /user/{userSlug}/followers/load/{lastElement}
+    defaults: { _controller: UserBundle:Default:userFollowersLoad }      
+    
+user_following:
+    pattern: /user/{userSlug}/following/
+    defaults: { _controller: UserBundle:Default:userFollowing } 
+    
+user_following_load:
+    pattern: /user/{userSlug}/following/load/{lastElement}
+    defaults: { _controller: UserBundle:Default:userFollowingLoad }     
+    
+user_lists:
+    pattern: /user/{userSlug}/lists/
+    defaults: { _controller: UserBundle:Default:userLists }
+    
+user_lists_load:
+    pattern: /user/{userSlug}/lists/load/{lastElement}
+    defaults: { _controller: UserBundle:Default:userListsLoad }    
+
+user_list_members:
+    pattern: /user/{userSlug}/list/{listId}/
+    defaults: { _controller: UserBundle:Default:userListMembers } 
+    
+user_list_members_load:
+    pattern: /user/{userSlug}/list/{listId}/load/{lastElement}
+    defaults: { _controller: UserBundle:Default:userListMembersLoad }     
+
+user_modal_contact_lists:
+    pattern: /user/{userSlug}/lists/{contactSlug}/
+    defaults: { _controller: UserBundle:Default:userModalContactLists }
+    
+user_follow_contact:
+    pattern: /user/{userId}/follow/
+    defaults: { _controller: UserBundle:Default:userFollowContact }
+
+user_unfollow_contact:
+    pattern: /user/{userId}/unfollow/
+    defaults: { _controller: UserBundle:Default:userUnfollowContact }
+    
+user_search:
+    pattern: /user/search/search/
+    defaults: { _controller: UserBundle:Default:userSearch }    
+    
+user_search_load:
+    pattern: /user/search/search/load/{lastElement}
+    defaults: { _controller: UserBundle:Default:userSearchLoad } 
+    
+user_search_button:
+    pattern: /user/search/button/
+    defaults: { _controller: UserBundle:Default:userSearchButton }      
+    
+user_modal_search:
+    pattern: /user/search/modal-search/
+    defaults: { _controller: UserBundle:Default:userModalSearch } 
+    
+user_modal_search_reload:
+    pattern: /user/search/reload/
+    defaults: { _controller: UserBundle:Default:userModalSearchReload }    
+    
+user_modal_onload:
+    pattern: /user/search/onload/
+    defaults: { _controller: UserBundle:Default:userModalOnload }          

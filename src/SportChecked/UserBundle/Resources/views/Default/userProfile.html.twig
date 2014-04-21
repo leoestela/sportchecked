@@ -1,0 +1,150 @@
+{% extends "UserBundle:Default:layout.html.twig" %}
+
+{% block stylesheets %}
+<link href="{{ asset('bundles/user/css/user.css') }}" rel="stylesheet" type="text/css" />
+<style>
+    .prev_container{
+        overflow: hidden;
+        max-width: 107px;
+        max-height: 107px;
+        text-align: center;
+        margin-bottom: 5px;
+    }
+    .prev_thumb{
+        margin: 0 auto;
+        text-align: center;
+        max-width: 107px;
+    }
+</style>
+{% endblock %}
+
+{% block container %}
+<div id="wrapper-container-login" class="centered">
+    <div class="form-title">
+        <h1>Editar perfil</h1>
+    </div>    
+    <div id="container-login">
+    {% block elements %}       
+    <form action="{{ path('profile') }}" method="post" {{form_enctype(form) }}>
+        <div class="form-main centered">
+            <div class="form-row-xl">
+                <div class="form-label">
+                    <label for="name"><strong>Foto</strong></label>
+                </div>
+                <div class="user-image-wrap centered">    
+                    <div class="user-image">
+                        <div class="user-hidden centered">
+                            {% if user.photo %}
+                                <img id="userphoto" src="{{ asset('uploads/user/images/' ~user.photo) }}" title="{{ user.name }}"/>
+                            {% else %}
+                                <img id="userphoto" src="{{ asset('bundles/user/images/default.png') }}" title="{{ user.name }}"/>                            
+                            {% endif %} 
+                            <div id="prev_sportchecked_userbundle_userprofiletype_file"></div>
+                        </div>  
+                    </div>
+                    <div class="user-select-img">    
+                        <div class="button-grey user-custom-input-file">
+                            {{ form_widget(form.file) }}
+                            Seleccionar imagen
+                            <div class="file">...</div>
+                        </div> 
+                    </div> 
+                </div>        
+            </div>            
+            <div class="form-row-xl">
+                <div class="form-label">
+                    <label for="name"><strong>Nombre completo</strong></label>
+                </div>
+                <div class="form-data input-l">
+                    {{ form_widget(form.name) }}
+                </div>
+            </div>
+            <div class="form-row-xl">
+                <div class="form-label">
+                    <label for="email"><strong>Correo electrónico</strong></label>
+                </div>
+                <div class="form-data input-l">
+                    {{ form_widget(form.email) }}
+                </div>
+            </div>
+            <div class="form-row-xl">
+                <div class="form-label">
+                    <label for="username"><strong>Nombre de usuario</strong></label>
+                </div>
+                <div class="form-data input-l">
+                    {{ form_widget(form.username) }}
+                </div>
+            </div> 
+            <div class="form-row-xl">
+                <div class="form-label">
+                    <label for="gender"><strong>Género</strong></label>
+                </div>
+                <div class="user-radio">
+                    {{ form_widget(form.gender) }}
+                </div>
+            </div>                 
+            <div class="form-row-xl">
+                <div class="form-label">
+                    <label for="intro"><strong>Biografía</strong></label>
+                </div>
+                <div class="form-data textarea-l">
+                    {{ form_widget(form.intro) }}
+                </div>
+            </div> 
+             <div class="form-row-xl">
+                <div class="form-label">
+                    <label for="ubication"><strong>Ubicación</strong></label>
+                </div>
+                <div class="form-data input-l">
+                    {{ form_widget(form.ubication) }}
+                </div>
+            </div>  
+            <div class="form-row-xl">
+                <div class="form-label">
+                    <label for="country"><strong>País</strong></label>
+                </div>
+                <div class="user-comboBox">
+                    {{ form_widget(form.country) }}
+                </div>
+            </div> 
+             <div class="form-row-xl">
+                <div class="form-label">
+                    <label for="web"><strong>Sitio web</strong></label>
+                </div>
+                <div class="form-data input-l">
+                    {{ form_widget(form.web) }}
+                </div>
+            </div>                   
+            <div class="form-row-xl" style="color:red;">                        
+                {{ form_rest(form) }}
+                {{ form_errors(form) }}	
+            </div>
+        </div>
+        <div class="form-submit centered">
+            <button id="submit" type="submit" name="signup" class="button-blue">Guardar cambios</button>
+        </div>
+    </form>
+    {% endblock %}
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('bundles/publication/js/jquery.preimage.js') }}" type="text/javascript"></script>
+    <script>
+            $(function() {
+                $(".user-custom-input-file input:file").change(function()
+                {
+                    if(document.getElementById("userphoto") !== null)
+                    {
+                        $('#userphoto').remove(); 
+                    }                    
+                    $(this).parent().find(".file").html($(this).val());
+                });
+            });
+            $(document).ready(function()
+            {
+                $('.file').preimage();
+            });
+    </script>
+{% endblock %}

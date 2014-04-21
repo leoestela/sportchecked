@@ -1,0 +1,61 @@
+{% extends "UserBundle:Default:layout.html.twig" %}
+
+{% block stylesheets %}
+<link href="{{ asset('bundles/board/css/board.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('bundles/user/css/user.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block headermenu %}
+    {% include "UserBundle:Default:userMenu.html.twig" with { 'option': 2, 'user': user }%}
+{% endblock %}
+
+{% block info %}
+    {% include "UserBundle:Default:userInfo.html.twig" with { 'user'   : user }%}
+    <div class="container-title">
+        <p class="user-container-title">
+            <strong>
+                {{ user.nfolders }} {% if user.nfolders == 1 %}carpeta{% else %}carpetas{% endif %}
+            </strong>
+        </p>
+    </div>
+{% endblock %}
+
+{% block elements %}
+    {% if app.user == user %}
+        {% include "BoardBundle:Default:boardPrintNew.html.twig"%}
+    {% endif %}
+    {% for board in boards %}
+        {% include "BoardBundle:Default:boardPrint.html.twig" with {'board': board}%}
+    {% endfor %}
+{% endblock %}
+
+{% block footercenter %}
+<div id="footer-loading">
+    <img src="{{ asset('bundles/publication/images/app/loading.gif') }}"/>
+</div>
+{% endblock %}
+
+{% block javascripts %}        
+<script type="text/javascript">
+    /* Load boards with masonry */
+    $( document ).ready(function() {
+        var $container = $('#container');
+        var $elementClass = '.board';
+        var $elementWidth = 336;
+        var $urlIn = '{{ url('user_boards_load', { 'userSlug': user.slug, 'lastElement': '+lastElement+' }) }}';
+        var $messageOut = 'No hay más carpetas para mostrar';
+        
+        $container.imagesLoaded(function() {
+            $container.masonry({
+                itemSelector: $elementClass,
+                columnWidth: $elementWidth,
+                isFitWidth: true
+            });
+        });
+        /* Loading more boards */
+        loadElements($container, $elementClass, $urlIn, $messageOut);
+        
+        userActions($container); 
+    });    
+</script>
+{% endblock %}

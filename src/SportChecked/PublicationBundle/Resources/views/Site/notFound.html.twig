@@ -1,0 +1,26 @@
+{% extends '::base.html.twig' %}
+
+{% block headermenu %}
+{% endblock %}
+
+{% block container %}
+<div id="wrapper-container" class="centered">
+    <div id="search-row">
+        <div class="search-center">
+            <div class="search-text">
+                <h1>
+                    Lo sentimos. No hemos encontrado la página que buscas.
+                </h1>   
+            </div>    
+        </div>
+    </div>
+    <div id="container-fixed">    
+    </div>
+</div>            
+{% endblock %}
+
+{% block footercenter %}
+<div id="footer-loading">
+    <img src="{{ asset('bundles/publication/images/app/loading.gif') }}"/>
+</div>
+{% endblock %}

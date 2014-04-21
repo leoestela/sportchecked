@@ -1,0 +1,18 @@
+{% extends '::base.html.twig' %}
+
+{% block headermenu %}
+    {% include "PublicationBundle:Default:publicationMenu.html.twig" %}
+{% endblock %}
+
+{% block container %}
+<div id="wrapper-container" class="centered">
+    {% block advice %}{% endblock %}
+    {% block info %}{% endblock %}    
+    
+    <div id="container">
+        {% block elements %}
+        {% endblock %}
+    </div>
+</div>
+{% endblock %}
+

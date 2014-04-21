@@ -1,0 +1,21 @@
+<ul class='ws_css_cb_menum' style='width:{{ size }}px;'>
+	<li>
+		<a href="{{ url('modality_checked', { 'modalityId': 'all' }) }}"><strong>Todas</strong>
+		
+		{% if checked == 'all' %}
+			<img src="{{ asset('bundles/publication/images/app/check.png') }}" alt=">" border="0" height="5" width="5"/>
+		{% endif %}
+		
+		</a>
+	</li>
+	{% for modality in modalities %}
+	<li>
+		<a href="{{ url('modality_checked', { 'modalityId': modality.id }) }}">{{ modality.name }}
+		
+		{% if modality.id == checked %}
+			<img src="{{ asset('bundles/publication/images/app/check.png') }}" alt=">" border="0" height="5" width="5"/>
+		{% endif %}
+		</a>
+	</li>
+	{% endfor %}
+</ul>

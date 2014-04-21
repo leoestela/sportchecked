@@ -1,0 +1,28 @@
+{% extends "PublicationBundle:Default:modalLayout.html.twig" %}
+
+{% block container %}
+<div id="wrapper-container-modal" class="centered">
+    <div id="container-modal-light" class="centered">
+        <div class="pub-modal-actions">
+            <h1>¡Perfecto!</h1>
+            <h2>Tu publicación ya está disponible para tus seguidores</h2>
+        </div>            
+    </div>    
+    <div id="container-add" class="centered">
+        {% block elements %}
+        <div class="row-add">
+            <h2>Ver cómo ha quedado la publicación</h2>
+        </div>
+        <div class="row-add border-b-grey">
+            <a href="#" onclick="parent.document.location = '{{ url('user_publications', {'userSlug': app.user.slug}) }}';"><img class="row-add-image" src="{{ asset('bundles/publication/images/app/view-publication.png') }}"/></a>
+        </div>
+        <div class="row-add">
+            <h2>Crear más publicaciones</h2>
+        </div>
+        <div class="row-add">
+            <a href="{{ url('publication_new') }}"><img class="row-add-image" src="{{ asset('bundles/publication/images/app/add-publication.png') }}"/></a>
+        </div>
+        {% endblock %}
+    </div>
+</div>
+{% endblock %}

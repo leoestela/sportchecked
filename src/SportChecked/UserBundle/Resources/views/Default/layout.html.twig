@@ -1,0 +1,12 @@
+{% extends '::base.html.twig' %}
+
+{% block container %} 
+<div id="wrapper-container" class="centered">
+    {% block info %}{% endblock %}
+        
+    <div id="container">
+        {% block elements %}
+        {% endblock %}
+    </div>
+</div>
+{% endblock %}

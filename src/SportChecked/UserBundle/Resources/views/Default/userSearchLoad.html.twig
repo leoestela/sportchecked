@@ -1,0 +1,5 @@
+{% if users %}
+    {% for user in users %}
+            {% include "UserBundle:Default:userPrint.html.twig" with {'user': user, 'starts': null}%}
+    {% endfor %}
+{% endif %}

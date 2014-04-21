@@ -1,0 +1,33 @@
+<div id="header-menu">
+    <div id="header-menu-content" class="centered" align="center">
+        <ul class="ws_css_cb_menu videoCssMenu">
+            <li>
+                <a href="{{ url('user_publications', { 'userSlug': user.slug }) }}">
+                    <span {% if option != 1 %}class="inactive"{% endif %}><strong>Publicaciones</strong></span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url('user_boards', { 'userSlug': user.slug }) }}">
+                    <span {% if option != 2 %}class="inactive"{% endif %}><strong>Carpetas</strong></span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url('user_sports', { 'userSlug': user.slug }) }}">
+                    <span {% if option != 3 %}class="inactive"{% endif %}><strong>Deportes</strong></span></a>
+            </li>
+            <li>
+                <a href="{{ url('user_followers', { 'userSlug': user.slug }) }}">
+                    <span {% if option != 4 %}class="inactive"{% endif %}><strong>Seguidores</strong></span></a>
+            </li>
+            <li>
+                <a href="{{ url('user_following', { 'userSlug': user.slug }) }}">
+                    <span {% if option != 5 %}class="inactive"{% endif %}><strong>Siguiendo</strong></span></a>
+            </li>
+            <li>
+                <a href="{{ url('user_lists', { 'userSlug': user.slug }) }}">
+                    <span {% if option != 6 %}class="inactive"{% endif %}><strong>Listas</strong></span></a>
+            </li>
+        </ul>
+    </div>			
+</div>
+

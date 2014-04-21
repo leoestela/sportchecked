@@ -1,0 +1,37 @@
+{% extends '::base.html.twig' %}
+
+{% block header %}
+<div id="header-modal-left">
+    <div id="header-modal-left-content">
+        <a href="{{ path('index') }}">
+            <img id="header-modal-logo" src="{{ asset('bundles/publication/images/app/logo.png') }}" alt="SportChecked"/>
+        </a>  
+    </div>
+</div>
+<div id="header-modal-right">
+    <div id="header-modal-right-content">
+        <a href="#" onclick="parent.$.fn.colorbox.close();">
+            <img src="{{ asset('bundles/publication/images/app/close-orange.png') }}" alt="Cerrar" title="Cerrar"/>
+        </a>
+    </div>
+</div>
+{% endblock %}
+
+{% block container %}
+<div id="wrapper-container-modal" class="centered">
+    <div id="container-modal-light" class="centered">
+        {% block actions %}
+        {% endblock %}
+    </div>
+    <div id="container-modal" class="centered">
+        {% block elements %}
+        {% endblock %}
+    </div>
+    <div id="container-modal-light" class="centered">
+        {% block actions2 %}
+        {% endblock %}
+    </div>        
+</div>
+{% endblock %}
+
+{% block footer %}{% endblock %}

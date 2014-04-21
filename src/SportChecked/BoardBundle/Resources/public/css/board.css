@@ -1,0 +1,236 @@
+/* BOARDS ----------------------------------------------- */
+.board {
+    width: 324px;
+    margin: 5px;
+    float: left;
+    border-radius: 5px;
+    clear: both;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background-color: #e6e6e6;
+    border: 1px solid #c0c0c0;
+}
+.board-empty {
+    width: 322px;
+    background-color: #ffffff;
+    border: 2px dashed #c0c0c0;
+    padding-top: 34px;
+}
+.board-title {
+    width: 308px;
+    height: auto;
+    padding: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    overflow: hidden;
+    color: #333333;
+}
+.board-title a {
+    text-decoration: none;
+    color: #333333;
+}
+.board-title a:hover {
+    text-decoration: none;
+    color: #333333;
+}
+.board-title a:visited {
+    text-decoration: none;
+    color: #333333;
+}
+.board-title p {
+    margin: 0;
+    padding: 0;
+}
+.board-contents {
+    width: 308px;
+    height: 30px;
+    padding: 2px 8px 8px 8px;
+    font-size: 11px;
+    overflow: hidden;
+    color: #666666;
+    text-align:center;
+}
+.board-contents p {
+    margin: 0;
+    padding: 0;
+}
+.board-border {
+    width: 298px;
+    height: 144px;
+    text-align: center;
+    border: 4px solid #ffffff;
+    margin: 0 auto;
+}
+.board-border2 {
+    width: 89px;
+    height: 50px;
+    text-align: center;
+    border: 4px solid #ffffff;
+    float:left;
+    margin-left: 9px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.board-image {
+    width: 286px;
+    height: 150px;
+    padding: 10px;
+    text-align: center;
+    overflow: hidden;
+    border: 1px solid #c0c0c0;
+    border-radius: 5px;
+    clear: both;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+.board-hidden{
+    width: 100%;
+    position: relative;
+    top:0px;
+    left:0px;
+    text-align: center;
+}
+.board-hidden img {
+    max-width: 286px;
+    max-height: 150px;
+    /*display: inline-block;*/
+    text-align: center;
+    /*vertical-align: middle;*/
+}
+.board-hidden a {
+    /*display: inline-block;*/
+    text-align: center;
+    /*vertical-align: middle;*/
+    font-size: 110px;
+    font-weight: bold;
+    color: red; 
+}
+.board-category {
+    width: 308px;
+    min-height: 22px;
+    margin-top: 10px;
+    margin-bottom: 8px;
+    padding: 0px 8px 0px 8px;
+    font-size: 12px;
+    color: #666666;
+}
+.board-category p {
+    text-align: center;
+    margin: 0px;
+    padding: 4px;
+}
+.board-textarea textarea {
+    width: 302px;
+    border: 1px solid #cbcbcc;
+    background-color: #ffffff;
+    border-radius: 4px;
+    clear: both;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    height: 40px;
+    padding: 2px;
+    background-color: #e6e6e6;
+    font-size: 16px;
+    font-weight: bold;
+}
+.board-textarea-s textarea {
+    width: 302px;
+    border: 1px solid #cbcbcc;
+    background-color: #ffffff;
+    border-radius: 4px;
+    clear: both;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    height: 44px;
+    padding: 2px;
+    margin-top: 3px;
+    background-color: #e6e6e6;
+    font-size: 12px;
+}
+.board-select-img {
+    width: 308px;
+    padding: 8px;
+}
+.board-custom-input-file {
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    text-align: center;
+    width: 280px;
+    min-height: 20px;
+}
+.board-custom-input-file .input-file {
+    margin: 0;
+    padding: 0;outline:0;
+    font-size: 10000px;
+    border: 10000px solid transparent;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    position: absolute;
+    right: -1000px;
+    top: -1000px;
+    cursor: pointer;
+}
+.board-custom-input-file .file {
+    font-size: 12px;
+    overflow: hidden;
+}
+.board-comboBox select {
+    background: transparent;
+    width: 105%;
+    padding: 1px;
+    font-size: 11px;
+    line-height: 1;
+    border: 0;
+    border-radius: 0;
+    height: 18px;
+    -webkit-appearance: none;
+}
+.board-comboBox {
+    width: 99%;
+    height: 18px;
+    overflow: hidden;
+    background: url(/bundles/publication/images/app/down_arrow_select.jpg) no-repeat right;
+    border: 1px solid #cbcbcc;
+    border-radius: 4px;
+    clear: both;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    float: left;
+}
+.board-modal-buttons {
+    width: 348px;
+    text-align: center;
+}
+.board-modal-a-left{
+    width: 60px;
+    float: left;
+    margin-right: 7px;
+}
+.board-modal-button-right{
+    width: 90px;
+    float: right;
+    margin-left: 7px;
+}
+.board-modal-a-right{
+    width: 60px;
+    float: right;
+    margin-left: 7px;
+}
+.board-modal-a{
+    width: 100%;
+    margin-top: 4px;
+    margin-bottom: 6px;
+}
+.board-row {
+    width: 100%;
+}
+.board-modal-button{
+    width: 345px;
+    margin-bottom: 6px;
+}

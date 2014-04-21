@@ -1,0 +1,77 @@
+{% extends "UserBundle:Default:layout.html.twig" %}
+
+{% block stylesheets %}
+<link href="{{ asset('bundles/user/css/user.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block headermenu %}
+<div id="header-menu">
+    <div id="header-menu-content" class="centered" align="center">
+        <ul class="ws_css_cb_menu videoCssMenu">
+            <li>
+                <a href="{{ path('sport_wellcome') }}"><span><strong>< Anterior</strong></span></a>
+            </li>
+            <li>
+                <a href="{{ path('index') }}"><span class="inactive"><strong>Saltar Intro</strong></span></a>
+            </li>
+            <li>
+                <a href="{{ path('user_intro_boards') }}"><span><strong>Siguiente ></strong></span></a>
+            </li>
+        </ul>
+    </div>			
+</div>
+{% endblock %}
+
+{% block info %}
+<div id="search-row">
+    <div class="search-center">
+        <div class="search-text">
+            <h1>
+                Escoge a quién seguir
+            </h1>
+            <p style="font-size: 14px;padding: 5px;">Descubre qué personas forman parte de SportChecked y elige a quién seguir.</p>  
+            {{ render(controller('UserBundle:Default:userSearchForm')) }}
+        </div>       
+    </div>
+</div>
+{% endblock %}
+
+{% block elements %}
+    {% for user in users %}
+        {% include "UserBundle:Default:userPrint.html.twig" with {'user': user, 'starts': null}%}
+    {% endfor %}
+{% endblock %}
+
+{% block footercenter %}
+<div id="footer-loading">
+    <img src="{{ asset('bundles/publication/images/app/loading.gif') }}"/>
+</div>
+{% endblock %}
+
+{% block javascripts %}  
+<script type="text/javascript">
+    /* Load users with masonry */
+    $( document ).ready(function() {
+        var $container = $('#container');
+        var $elementClass = '.user';
+        var $elementWidth = 336;
+        {% if text %}
+            var $urlIn = '{{ url('user_wellcome_text_search_load', { 'lastElement': '+lastElement+', 'text': text }) }}';
+        {% else %}
+            var $urlIn = '{{ url('user_wellcome_search_load', { 'lastElement': '+lastElement+' }) }}';
+        {% endif %}
+        var $messageOut = 'No hay más usuarios para mostrar';
+        
+        $container.imagesLoaded(function() {
+            $container.masonry({
+                itemSelector: $elementClass,
+                columnWidth: $elementWidth,
+                isFitWidth: true
+            });
+        });
+        /* Loading more users */
+        loadElements($container, $elementClass, $urlIn, $messageOut);
+        userActions($container); 
+    }); 
+</script>
+{% endblock %}

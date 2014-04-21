@@ -1,0 +1,7 @@
+message_new:
+    pattern:  /message/new/
+    defaults: { _controller: MessageBundle:Default:messageNew }
+
+message_sent:
+    pattern:  /message/sent/
+    defaults: { _controller: MessageBundle:Default:messageSent }    

@@ -1,0 +1,5 @@
+{% if lists %}
+    {% for list in lists %}
+        {% include "ContactBundle:Default:listPrint.html.twig" with {'list': list}%}
+    {% endfor %}
+{% endif %}

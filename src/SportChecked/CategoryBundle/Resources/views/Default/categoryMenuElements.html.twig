@@ -1,0 +1,21 @@
+<ul class='ws_css_cb_menum' style='width:{{ size }}px;'>
+	<li>
+		<a href="{{ url('category_checked', { 'categoryId': all }) }}"><strong>Todas</strong>
+		
+		{% if checked == all %}
+			<img src="{{ asset('bundles/publication/images/app/check.png') }}" alt=">" border="0" height="5" width="5"/>
+		{% endif %}
+		
+		</a>
+	</li>
+	{% for category in categories %}
+	<li>
+		<a href="{{ url('category_checked', { 'categoryId': category.id }) }}">{{ category.name }}
+		
+		{% if category.id == checked %}
+			<img src="{{ asset('bundles/publication/images/app/check.png') }}" alt=">" border="0" height="5" width="5"/>
+		{% endif %}
+		</a>
+	</li>
+	{% endfor %}
+</ul>

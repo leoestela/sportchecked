@@ -1,0 +1,34 @@
+// Path principal
+cd NetBeansProjects/SportChecked
+
+// Borrar la base de datos (¡cuidado con este comando!)
+php app/console doctrine:database:drop --force
+
+// Crear la base de datos
+php app/console doctrine:database:create
+
+// Crear la estructura de tablas
+php app/console doctrine:schema:create
+
+// Cargar archivos de datos
+php app/console doctrine:fixtures:load --purge-with-truncate
+php app/console doctrine:fixtures:load --append
+
+// Ver las sentencias SQL que se ejecutarían para la actualización
+php app/console doctrine:schema:update --dump-sql
+
+// Ejecutar las sentencias SQL anteriores
+php app/console doctrine:schema:update --force
+
+// Instalar archivos de un bundle
+php app/console assets:install web
+
+// Borrar la caché
+php app/console cache:clear --env=dev
+php app/console cache:clear --env=prod
+
+// Limpiar la caché de desarrollo
+php app/console cache:clear --no-warmup --env=dev
+
+// Limpiar la caché de producción
+php app/console cache:clear --no-warmup --env=prod

@@ -1,0 +1,589 @@
+<?php
+
+namespace SportChecked\UserBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * User
+ *
+ * @ORM\Table()
+ * @ORM\Entity
+ */
+class User {
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="username", type="string", length=255)
+     */
+    private $username;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=500)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=500)
+     */
+    private $email;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="password", type="string", length=255)
+     */
+    private $password;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="salt", type="string", length=255)
+     */
+    private $salt;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="avatar", type="string", length=255)
+     */
+    private $avatar;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="intro", type="string", length=500)
+     */
+    private $intro;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ubication", type="string", length=500)
+     */
+    private $ubication;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="web", type="string", length=500)
+     */
+    private $web;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="birthdate", type="date")
+     */
+    private $birthdate;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="gender", type="string", length=255)
+     */
+    private $gender;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="publications", type="integer")
+     */
+    private $publications;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="folders", type="integer")
+     */
+    private $folders;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="sports", type="integer")
+     */
+    private $sports;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="followers", type="integer")
+     */
+    private $followers;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="following", type="integer")
+     */
+    private $following;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="lists", type="integer")
+     */
+    private $lists;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created", type="datetime")
+     */
+    private $created;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="slug", type="string", length=255)
+     */
+    private $slug;
+
+    /**
+     * Set default values
+     *
+     * @return User
+     */
+    public function __construct() {
+        $this->created = new \DateTime();
+        $this->publications = 0;
+        $this->folders = 0;
+        $this->sports = 0;
+        $this->followers = 0;
+        $this->following = 0;
+        $this->lists = 0;
+    }
+
+    /**
+     * User to string
+     *
+     * @return string 
+     */
+    public function __toString() {
+        return $this->getUsername();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId() {
+        return $this->id;
+    }
+
+    /**
+     * Set username
+     *
+     * @param string $username
+     * @return User
+     */
+    public function setUsername($username) {
+        $this->username = $username;
+
+        return $this;
+    }
+
+    /**
+     * Get username
+     *
+     * @return string 
+     */
+    public function getUsername() {
+        return $this->username;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return User
+     */
+    public function setName($name) {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName() {
+        return $this->name;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     * @return User
+     */
+    public function setEmail($email) {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string 
+     */
+    public function getEmail() {
+        return $this->email;
+    }
+
+    /**
+     * Set password
+     *
+     * @param string $password
+     * @return User
+     */
+    public function setPassword($password) {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Get password
+     *
+     * @return string 
+     */
+    public function getPassword() {
+        return $this->password;
+    }
+
+    /**
+     * Set salt
+     *
+     * @param string $salt
+     * @return User
+     */
+    public function setSalt($salt) {
+        $this->salt = $salt;
+
+        return $this;
+    }
+
+    /**
+     * Get salt
+     *
+     * @return string 
+     */
+    public function getSalt() {
+        return $this->salt;
+    }
+
+    /**
+     * Set avatar
+     *
+     * @param string $avatar
+     * @return User
+     */
+    public function setAvatar($avatar) {
+        $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    /**
+     * Get avatar
+     *
+     * @return string 
+     */
+    public function getAvatar() {
+        return $this->avatar;
+    }
+
+    /**
+     * Set intro
+     *
+     * @param string $intro
+     * @return User
+     */
+    public function setIntro($intro) {
+        $this->intro = $intro;
+
+        return $this;
+    }
+
+    /**
+     * Get intro
+     *
+     * @return string 
+     */
+    public function getIntro() {
+        return $this->intro;
+    }
+
+    /**
+     * Set ubication
+     *
+     * @param string $ubication
+     * @return User
+     */
+    public function setUbication($ubication) {
+        $this->ubication = $ubication;
+
+        return $this;
+    }
+
+    /**
+     * Get ubication
+     *
+     * @return string 
+     */
+    public function getUbication() {
+        return $this->ubication;
+    }
+
+    /**
+     * Set web
+     *
+     * @param string $web
+     * @return User
+     */
+    public function setWeb($web) {
+        $this->web = $web;
+
+        return $this;
+    }
+
+    /**
+     * Get web
+     *
+     * @return string 
+     */
+    public function getWeb() {
+        return $this->web;
+    }
+
+    /**
+     * Set birthdate
+     *
+     * @param \DateTime $birthdate
+     * @return User
+     */
+    public function setBirthdate($birthdate) {
+        $this->birthdate = $birthdate;
+
+        return $this;
+    }
+
+    /**
+     * Get birthdate
+     *
+     * @return \DateTime 
+     */
+    public function getBirthdate() {
+        return $this->birthdate;
+    }
+
+    /**
+     * Set gender
+     *
+     * @param string $gender
+     * @return User
+     */
+    public function setGender($gender) {
+        $this->gender = $gender;
+
+        return $this;
+    }
+
+    /**
+     * Get gender
+     *
+     * @return string 
+     */
+    public function getGender() {
+        return $this->gender;
+    }
+
+    /**
+     * Set publications
+     *
+     * @param integer $publications
+     * @return User
+     */
+    public function setPublications($publications) {
+        $this->publications = $publications;
+
+        return $this;
+    }
+
+    /**
+     * Get publications
+     *
+     * @return integer 
+     */
+    public function getPublications() {
+        return $this->publications;
+    }
+
+    /**
+     * Set folders
+     *
+     * @param integer $folders
+     * @return User
+     */
+    public function setFolders($folders) {
+        $this->folders = $folders;
+
+        return $this;
+    }
+
+    /**
+     * Get folders
+     *
+     * @return integer 
+     */
+    public function getFolders() {
+        return $this->folders;
+    }
+
+    /**
+     * Set sports
+     *
+     * @param integer $sports
+     * @return User
+     */
+    public function setSports($sports) {
+        $this->sports = $sports;
+
+        return $this;
+    }
+
+    /**
+     * Get sports
+     *
+     * @return integer 
+     */
+    public function getSports() {
+        return $this->sports;
+    }
+
+    /**
+     * Set followers
+     *
+     * @param integer $followers
+     * @return User
+     */
+    public function setFollowers($followers) {
+        $this->followers = $followers;
+
+        return $this;
+    }
+
+    /**
+     * Get followers
+     *
+     * @return integer 
+     */
+    public function getFollowers() {
+        return $this->followers;
+    }
+
+    /**
+     * Set following
+     *
+     * @param integer $following
+     * @return User
+     */
+    public function setFollowing($following) {
+        $this->following = $following;
+
+        return $this;
+    }
+
+    /**
+     * Get following
+     *
+     * @return integer 
+     */
+    public function getFollowing() {
+        return $this->following;
+    }
+
+    /**
+     * Set lists
+     *
+     * @param integer $lists
+     * @return User
+     */
+    public function setLists($lists) {
+        $this->lists = $lists;
+
+        return $this;
+    }
+
+    /**
+     * Get lists
+     *
+     * @return integer 
+     */
+    public function getLists() {
+        return $this->lists;
+    }
+
+    /**
+     * Set created
+     *
+     * @param \DateTime $created
+     * @return User
+     */
+    public function setCreated($created) {
+        $this->created = $created;
+
+        return $this;
+    }
+
+    /**
+     * Get created
+     *
+     * @return \DateTime 
+     */
+    public function getCreated() {
+        return $this->created;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return User
+     */
+    public function setSlug($slug) {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug() {
+        return $this->slug;
+    }
+
+}

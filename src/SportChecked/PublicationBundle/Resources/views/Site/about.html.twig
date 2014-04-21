@@ -1,0 +1,80 @@
+{% extends '::base.html.twig' %}
+
+{% block headermenu %}
+<div id="header-menu">
+    <div id="header-menu-content" class="centered" align="center">
+        <ul class="ws_css_cb_menu videoCssMenu">
+            <li>
+                <a href="{{ path('static_page', { 'page': 'help' }) }}"><span class="inactive"><strong>Guía de Usuario</strong></span></a>
+            </li>
+            <li>
+                <a href="{{ path('static_page', { 'page': 'about' }) }}"><span><strong>Sobre Nosotros</strong></span></a>
+            </li>
+            <li>
+                <a href="{{ path('static_page', { 'page': 'legal' }) }}"><span class="inactive"><strong>Términos y Condiciones</strong></span></a>
+            </li>
+        </ul>
+    </div>			
+</div>
+{% endblock %}
+
+{% block container %}
+<div id="wrapper-container" class="centered">
+    <div id="search-row">
+        <div class="search-center">
+            <div class="search-text">
+                <h1>
+                    Sobre Nosotros
+                </h1>   
+            </div>    
+        </div>
+    </div>
+    <div id="container-fixed">    
+        <div class="container-text">										
+                <h2>¿Qué puedes encontrar en SportChecked?</h2>
+                <ul>
+                    <li><p><strong>Red social:</strong></p>
+                        <p>Encuentra personas con tus mismos gustos. Sigue a quien quieras, profesional o aficionado, de cualquiera de los deportes que sigues.
+                        </p>
+                    </li>
+                    <li><p><strong>Revista deportiva on-line:</strong></p>
+                        <p>Cada vez que entres en SportChecked verás las últimas publicaciones de la gente a la que sigues, en formato de diario deportivo. 
+                        </p>
+                    </li>
+                    <li><p><strong>Archivador de publicaciones:</strong></p>
+                        <p>Gestiona como quieras tus carpetas, crea, modifica o elimina. Decide dónde guardar cada publicación.
+                        </p>
+                    </li>
+                    <li><p><strong>Altavoz para tu web o blog:</strong></p>
+                        <p>Consigue visibilidad para tu web o blog enlazando contenidos desde SportChecked. Tus publicaciones llegarán mucho más lejos.   
+                        </p>
+                    </li>
+                    <li><p><strong>Todos los deportes:</strong></p>
+                        <p>Y cuando decimos todos, queremos decir todos. Cualquier deporte tiene su sitio en SportChecked. ¡Si no encuentras el tuyo, avísanos y lo crearemos!   
+                        </p>
+                    </li>                    
+                </ul>
+                <h2>¿Quiénes somos?</h2>
+                <p>El equipo de SportChecked, afincado en Mallorca, está formado por una única persona (por ahora), Leonardo Estela Hernández (<strong><a href="https://twitter.com/leoestela" target="_blank">@leoestela</a></strong>), aunque también ha contado con la participación eventual  de su hermano Gabriel, ambos Ingenieros Técnicos en Informática de Gestión y con amplia experiencia profesional en el ámbito de la programación. Juntos participaron con el proyecto SportChecked en el Programa de Aceleración de Startups de Microsoft y BarrabésNext en el verano de 2013.</p>
+                <h2>Contacto</h2>  
+                <p>Para cualquier información, comentario o sugerencia puedes escribirnos a <strong><a href="mailto:info@sportchecked.com">info@sportchecked.com</a></strong>
+                </p>
+                <p>También puedes seguirnos a través de:</p>
+                <ul>
+                    <li><a href="https://www.facebook.com/sportchecked" target="_blank"><strong>Fanpage de Facebook</strong></a>
+                    </li>
+                    <li><a href="https://twitter.com/leoestela" target="_blank"><strong>Cuenta de Twitter</strong></a>
+                    </li>  
+                    <li><a href="http://leoestela.blogspot.com.es/" target="_blank"><strong>Blog del desarrollador</strong></a>
+                    </li>                    
+                </ul>
+        </div>	
+    </div>
+</div>            
+{% endblock %}
+
+{% block footercenter %}
+<div id="footer-loading">
+    <img src="{{ asset('bundles/publication/images/app/loading.gif') }}"/>
+</div>
+{% endblock %}

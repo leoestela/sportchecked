@@ -1,0 +1,30 @@
+{% extends "PublicationBundle:Default:modalLayout.html.twig" %}
+
+{% block stylesheets %}
+<link href="{{ asset('bundles/publication/css/publication.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block actions %}
+    <div class="pub-modal-actions">
+        <h2>¿Compartir esta publicación con tus seguidores?</h2>
+    </div>
+    <div class="pub-modal-buttons">
+        <a id="shareButton" href="{{ url('publication_share', { 'publicationId': publication.id }) }}" class="button-blue pub-modal-a-right">Compartir</a>        
+        <a id="cancelButton" class="button-grey pub-modal-a-left" href="#" onclick="parent.$.fn.colorbox.close();">Cancelar</a>
+    </div>
+{% endblock %}
+{% block elements %}
+    {% include "PublicationBundle:Default:publicationPrint.html.twig"  
+                with {'publication' : publication,
+                      'actionUser'  : publication.user,
+                      'lastAction'  : null
+    }%}
+{% endblock %}
+
+{% block javascripts %}
+<script>
+        $(document).ready(function() {
+            publicationShare();
+        });
+</script>
+{% endblock %}

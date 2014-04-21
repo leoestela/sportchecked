@@ -1,0 +1,73 @@
+{% extends "PublicationBundle:Default:layout.html.twig" %}
+
+{% block stylesheets %}
+<link href="{{ asset('bundles/publication/css/publication.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block headermenu %}
+{% endblock %}
+
+{% block advice %}
+<div id="search-row">
+    <div class="search-center">
+        <div class="search-text">
+            <h1>
+                <span style="font-weight: normal;">Resultados de publicaciones para </span>"{{ text }}"
+            </h1>
+        </div>
+        <div class="search-buttons">
+            <a href="{{ path('publication_search_button') }}" class="button-blue">Publicaciones</a>
+            <a href="{{ path('user_search_button') }}" class="button-grey">Personas</a>
+            <a href="{{ path('sport_search_button') }}" class="button-grey">Deportes</a>
+        </div>
+        {% if publications|length <= 0%}    
+        <div class="search-noresults">
+            <h3>
+                No se ha encontrado ningún resultado
+            </h3>
+        </div>
+        {% endif %}    
+    </div>
+</div>
+{% endblock %}
+
+{% block elements %}
+    {% for publication in publications %}
+        {% include "PublicationBundle:Default:publicationPrint.html.twig"  
+                    with {'publication'         : publication.publication,
+                          'actionUser'          : publication.user,
+                          'lastAction'          : publication.lastaction
+        }%}
+    {% endfor %}
+{% endblock %}
+
+{% block footercenter %}
+<div id="footer-loading">
+    <img src="{{ asset('bundles/publication/images/app/loading.gif') }}"/>
+</div>
+{% endblock %}
+
+{% block javascripts %}        
+<script type="text/javascript">
+    /* Load publications with masonry */
+    $( document ).ready(function() {
+        var $container = $('#container');
+        var $elementClass = '.pub';
+        var $elementWidth = 336;
+        var $urlIn = '{{ url('publication_search_load', { 'lastElement': '+lastElement+' }) }}';
+        var $messageOut = 'No hay más publicaciones para mostrar';
+        
+        $container.imagesLoaded(function() {
+            $container.masonry({
+                itemSelector: $elementClass,
+                columnWidth: $elementWidth,
+                isFitWidth: true
+            });
+        });
+        /* Loading more publications */
+        loadElements($container, $elementClass, $urlIn, $messageOut);
+        /* Show and hide action buttons for publications */
+        publicationActions($container);
+    });    
+</script>
+{% endblock %}

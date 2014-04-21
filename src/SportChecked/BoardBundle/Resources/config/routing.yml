@@ -1,0 +1,23 @@
+board_new:
+    pattern:  /board/new/
+    defaults: { _controller: BoardBundle:Default:boardNew }
+
+board_edit:
+    pattern:  /board/{boardId}/edit/
+    defaults: { _controller: BoardBundle:Default:boardEdit }
+
+board_advice:
+    pattern:  /board/{boardId}/advice/
+    defaults: { _controller: BoardBundle:Default:boardAdvice }   
+    
+board_delete:
+    pattern:  /board/{boardId}/delete/
+    defaults: { _controller: BoardBundle:Default:boardDelete } 
+    
+board_simple_form:
+    pattern: /board/{boardId}/simple-form/
+    defaults: { _controller: BoardBundle:Default:boardSimpleForm }
+
+board_new_from_combo:
+    pattern:  /board/new-simple/
+    defaults: { _controller: BoardBundle:Default:boardNewFromCombo }        

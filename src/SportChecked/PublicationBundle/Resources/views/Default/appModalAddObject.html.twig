@@ -1,0 +1,28 @@
+{% extends "PublicationBundle:Default:modalLayout.html.twig" %}
+
+{% block container %}
+<div id="wrapper-container-modal" class="centered">
+    <div id="container-add" class="centered">
+        {% block elements %}
+        <div class="row-add">
+            <h2>Publicar un nuevo titular</h2>
+        </div>
+        <div class="row-add border-b-grey">
+            <a href="{{ url('publication_new') }}"><img class="row-add-image" src="{{ asset('bundles/publication/images/app/add-publication.png') }}"/></a>
+        </div>
+        <div class="row-add">
+            <h2>Crear una nueva carpeta</h2>
+        </div>
+        <div class="row-add border-b-grey">
+            <a href="{{ url('board_new') }}"><img class="row-add-image" src="{{ asset('bundles/publication/images/app/add-folder.png') }}"/></a>
+        </div>
+        <div class="row-add">
+            <h2>Crear lista de usuarios</h2>
+        </div>
+        <div class="row-add">
+            <a href="{{ url('list_new') }}"><img class="row-add-image" src="{{ asset('bundles/publication/images/app/add-list.png') }}"/></a>
+        </div>
+        {% endblock %}
+    </div>
+</div>
+{% endblock %}

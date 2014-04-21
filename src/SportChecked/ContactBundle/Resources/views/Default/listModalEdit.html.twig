@@ -1,0 +1,114 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+<link href="{{ asset('bundles/board/css/board.css') }}" rel="stylesheet" type="text/css" />
+<style>
+    .prev_container{
+        overflow: hidden;
+        max-width: 286px;
+        min-height: 94px;
+        text-align: center;
+        margin-bottom: 5px;
+    }
+    .prev_thumb{
+        margin: 0 auto;
+        text-align: center;
+        max-width: 286px;
+    }
+</style>
+{% endblock %}
+
+{% block header %}
+    <div id="header-modal-left">
+        <div id="header-modal-left-content">
+            <a href="{{ path('index') }}">
+                <img id="header-modal-logo" src="{{ asset('bundles/publication/images/app/logo.png') }}" alt="SportChecked"/>
+            </a>  
+        </div>
+    </div>
+    <div id="header-modal-right">
+        <div id="header-modal-right-content">
+            <a href="#" onclick="parent.$.fn.colorbox.close();">
+                <img src="{{ asset('bundles/publication/images/app/close-orange.png') }}" alt="Cerrar" title="Cerrar"/>
+            </a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block container %}
+    <div id="wrapper-container-modal" class="centered">
+        <div id="container-modal-light" class="centered">
+            <div class="pub-modal-actions">
+                <h2>Editar lista</h2>
+            </div>            
+        </div>
+        <form id="newList" action="{{ url('list_edit', { 'listId': list.id }) }}" method="post" {{form_enctype(form) }}>    
+            <div id="container-modal" class="centered">
+                <div class="board">
+                    <div class="board-title border-b-grey-m">
+                        <div class="form-row">
+                            <div class="form-data board-textarea">
+                                {{ form_widget(form.name) }}
+                            </div>
+                        </div>        
+                        <div class="form-row">
+                            <div class="form-data board-textarea-s">
+                                {{ form_widget(form.description) }}
+                            </div>
+                        </div>    
+                    </div>        
+                    <div class="board-image centered" style="margin-top: 8px;">
+                        <div class="board-hidden centered">
+                            {% if list.photo %}
+                                <img id="listphoto" src="{{ asset('uploads/contact/contactlist/images/' ~list.photo) }}" title="{{ list.name }}"/>
+                            {% endif %} 
+                            <div id="prev_sportchecked_contactbundle_contactlisttype_file">   
+                            </div>
+                        </div>                 
+                    </div>
+                    <div class="board-select-img">    
+                        <div class="button-grey board-custom-input-file">
+                            {{ form_widget(form.file) }}
+                            Seleccionar imagen
+                            <div class="file">...</div>
+                        </div> 
+                    </div>  
+                </div>
+            </div>      
+            <div id="container-modal-light-footer" class="centered">  
+                <div class="board-modal-buttons">
+                    <div class="form-row">
+                        {{ form_rest(form) }}
+                        {{ form_errors(form) }}			
+                    </div>
+                    <a id="deleteButton" class="button-grey board-modal-a-left" href="{{ url('list_advice', { 'listId': list.id }) }}">Eliminar</a>                        
+                    <button id="buttonNew" class="button-blue board-modal-button-right" type="submit" name="newBoard">
+                        Guardar
+                    </button>                        
+                    <a id="cancelButton" class="button-grey board-modal-a-left" href="#" onclick="parent.$.fn.colorbox.close();">Cancelar</a>
+                </div>
+            </div>  
+        </form>
+    </div>
+{% endblock %}
+
+{% block footer %}{% endblock %}
+
+{% block javascripts %}
+<script src="{{ asset('bundles/publication/js/jquery.preimage.js') }}" type="text/javascript"></script>
+<script>
+    $(function(){$(".board-custom-input-file input:file").change(function()
+        {   
+            if(document.getElementById("listphoto") !== null)
+            {
+                $('#listphoto').remove(); 
+            }   
+            $(this).parent().find(".file").html($(this).val());
+        });
+    });
+    $(document).ready(function()
+    {   
+        $('.file').preimage();
+    });    
+</script>
+{% endblock %}

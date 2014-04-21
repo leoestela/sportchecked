@@ -1,0 +1,68 @@
+<div class="user element" id="{{ user.id }}{% if (starts)%}_{{ starts |date('YmdHis') }}{% endif %}">
+    <div id="user-name" class="element-title border-b-grey-m">
+        <p>
+            <a href="{{ url('user_publications', { 'userSlug': user.slug }) }}">
+                {{ user.name }}
+            </a>
+        </p>
+    </div>  
+    <div id="user-info" class="element-row border-t-grey-l">
+        <div class="element-body centered">
+            <div class="element-avatar">
+                {% if user.photo %}
+                    <img src="{{ asset('uploads/user/images/' ~user.photo) }}" alt="No Photo" border="0"/>
+                {% else %}
+                    <img src="{{ asset('bundles/user/images/default.png') }}"/>
+                {% endif %}
+            </div>
+            <div class="element-left-text">     
+                <p>{{ user.intro }}</p>
+            </div>    
+        </div>        
+    </div>
+    <div id="user-statistics" class="element-row border-b-grey-m"> 
+        <div class="element-statistics"> 
+            <div class="element-info">
+                <a href="{{ url('user_followers', { 'userSlug': user.slug }) }}"><strong>Seguidores</strong></a>
+                <p><span id="numFollowers{{ user.id }}">{{ user.nfollowers }}</span></p>
+            </div>
+            <div class="element-info element-info-center">
+                <a href="{{ url('user_publications', { 'userSlug': user.slug }) }}"><strong>Publicaciones</strong></a>
+                <p><span id="numPublications{{ user.id }}">{{ user.npublications }}</span></p>
+            </div>
+            <div class="element-info">
+                <a href="{{ url('user_sports', { 'userSlug': user.slug }) }}"><strong>Deportes</strong></a>
+                <p><span id="numSports{{ user.id }}">{{ user.nsports }}</span></p>
+            </div>
+        </div>        
+    </div>    
+    <div id="user-button" class="element-button centered border-t-grey-l">
+        {% if user.followers %}
+            {% if user.followers|length > 0 %}
+                {% set count = 1 %}
+            {% else %}
+                {% set count = 0 %}
+            {% endif %}  
+        {% else %}
+            {% set count = 0 %}
+        {% endif %}   
+        {% if is_granted('ROLE_USER') %}    
+            <a  id="buttonLists{{ user.id }}" {% if count == 0 %}style="display:none;"{% endif %}
+                href="{{ url('user_modal_contact_lists', { 'userSlug': app.user.slug, 'contactSlug': user.slug }) }}" class="button-grey iframe">
+                <strong>+</strong>
+            </a> 
+            <a id="buttonUnfollow{{ user.id }}" {% if count == 0 %}style="display:none;"{% endif %}
+                href="{{ url('user_unfollow_contact', { 'userId': user.id }) }}" class="element-button-a buttonUnfollow button-blue">
+                Siguiendo
+            </a>
+            <a  id="buttonFollow{{ user.id }}" {% if count == 1 %}style="display:none;"{% endif %}
+                href="{{ url('user_follow_contact', { 'userId': user.id }) }}" class="element-button-a buttonFollow button-grey">
+                Seguir
+            </a>
+        {% else %}
+            <a  href="{{ path('login') }}" class="element-button-a button-grey">
+                Seguir
+            </a>            
+        {% endif %}      
+    </div>
+</div>

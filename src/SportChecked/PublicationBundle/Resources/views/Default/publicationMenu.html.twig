@@ -1,0 +1,21 @@
+<div id="header-menu">
+    <div id="header-menu-content" class="centered" align="center">
+        <ul class="ws_css_cb_menu videoCssMenu">
+            <li class="menuOption">
+                <a href="{% if is_granted('ROLE_USER') %}{{ url('usersport_menu_elements') }}{% else %}{{ url('sport_menu_elements') }}{% endif %}" class="menuLink"><span><strong>Deportes</strong></span></a>       
+            </li>
+            <li class="menuOption">
+                <a href="{{ url('modality_menu_elements') }}" class="menuLink"><span><strong>Modalidades</strong></span></a>
+            </li>
+            <li class="menuOption">
+                <a href="{{ url('category_menu_elements') }}" class="menuLink"><span><strong>Categorías</strong></span></a>
+            </li>
+            {% if is_granted('ROLE_USER') %}
+            <li class="menuOption">
+                <a href="{{ url('list_menu_elements') }}" class="menuLink"><span><strong>Usuarios</strong></span></a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>			
+</div>
+

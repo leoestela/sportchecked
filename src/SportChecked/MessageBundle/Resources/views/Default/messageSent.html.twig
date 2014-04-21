@@ -1,0 +1,15 @@
+{% extends "PublicationBundle:Default:modalLayout.html.twig" %}
+
+{% block container %}
+<div id="wrapper-container-modal" class="centered">
+    <div id="container-modal-light" class="centered">
+        <div class="pub-modal-actions">
+            <h2>Mensaje enviado correctamente</h2>
+            <p>¡Muchas gracias por tu colaboración!</p>
+            <a id="cancelButton" class="button-blue pub-modal-a-right" href="#" onclick="parent.$.fn.colorbox.close();" style="margin-top:20px;">
+                Aceptar
+            </a>
+        </div>
+    </div>    
+</div>
+{% endblock %}

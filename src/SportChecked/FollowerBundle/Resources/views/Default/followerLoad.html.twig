@@ -1,0 +1,5 @@
+{% if followers %}
+    {% for follower in followers %}
+        {% include "UserBundle:Default:userPrint.html.twig" with {'user': follower.follower, 'starts': follower.starts}%}
+    {% endfor %}
+{% endif %}

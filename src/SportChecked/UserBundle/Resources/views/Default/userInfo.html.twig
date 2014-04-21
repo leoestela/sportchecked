@@ -1,0 +1,63 @@
+<div class="user-row">
+    <div class="user-left">
+        <div class="user-avatar">
+            {% if user.photo %}
+                <img src="{{ asset('uploads/user/images/' ~user.photo) }}" alt="No Photo" border="0"/>
+            {% else %}
+                <img src="{{ asset('bundles/user/images/default.png') }}"/>
+            {% endif %}
+        </div>
+        <div class="user-info">
+            <h2><strong>{{ user.name }}</strong></h2>
+            <h3>{{ user.username }}</h3>
+            <div class="user-bio">
+                <p>{{ user.intro }}</p>
+            </div>
+            <div class="user-web">
+                <p>     
+                        {% if user.ubication %}
+                            <img src="{{ asset('bundles/publication/images/app/pin.png') }}"/>	
+                            {{ user.ubication }}&nbsp;&nbsp;&nbsp;&nbsp;
+                        {% endif %}
+                        {% if user.web %}
+                            <img src="{{ asset('bundles/publication/images/app/pointer.png') }}"/>
+                            <a href="http://{{ user.web }}" target="_blank">{{ user.web }}</a>
+                        {% endif %}   
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="user-right">
+        <div class="user-right-elements">
+        {% if app.user == user %}
+        <a href="{{ path('profile') }}" class="button-blue">
+                Editar perfil
+        </a>
+        {% else %}
+            {% if user.followers %}
+                {% if user.followers|length > 0 %}
+                    {% set count = 1 %}
+                {% else %}
+                    {% set count = 0 %}
+                {% endif %}  
+            {% else %}
+                {% set count = 0 %}
+            {% endif %}   
+            {% if is_granted('ROLE_USER') %}    
+                <a  id="buttonLists{{ user.id }}" {% if count == 0 %}style="display:none;"{% endif %}
+                    href="{{ url('user_modal_contact_lists', { 'userSlug': app.user.slug, 'contactSlug': user.slug }) }}" class="button-grey iframe">
+                    <strong>+</strong>
+                </a> 
+            {% endif %}     
+            <a id="buttonUnfollow{{ user.id }}" {% if count == 0 %}style="display:none;"{% endif %}
+                href="{{ url('user_unfollow_contact', { 'userId': user.id }) }}" class="element-button-a buttonUnfollow button-blue">
+                Siguiendo
+            </a>
+            <a  id="buttonFollow{{ user.id }}" {% if count == 1 %}style="display:none;"{% endif %}
+                href="{{ url('user_follow_contact', { 'userId': user.id }) }}" class="element-button-a buttonFollow button-grey">
+                Seguir
+            </a> 
+        {% endif %}
+        </div>        
+    </div>        
+</div>

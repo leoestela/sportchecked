@@ -1,0 +1,7 @@
+parameters:
+#    message.example.class: SportChecked\MessageBundle\Example
+
+services:
+#    message.example:
+#        class: %message.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -1,0 +1,44 @@
+message:
+    resource: "@MessageBundle/Resources/config/routing.yml"
+    prefix:   /
+
+index:
+    pattern: /
+    defaults: { _controller: PublicationBundle:Default:index }
+    
+static_page:
+   pattern: /site/{page}
+   defaults: { _controller: PublicationBundle:Site:static }
+
+user:
+    resource: "@UserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+sport:
+    resource: "@SportBundle/Resources/config/routing.yml"
+    prefix:   /
+
+publication:
+    resource: "@PublicationBundle/Resources/config/routing.yml"
+    prefix:   /
+
+follower:
+    resource: "@FollowerBundle/Resources/config/routing.yml"
+    prefix:   /
+
+feature:
+    resource: "@FeatureBundle/Resources/config/routing.yml"
+    prefix:   /
+
+contact:
+    resource: "@ContactBundle/Resources/config/routing.yml"
+    prefix:   /
+
+category:
+    resource: "@CategoryBundle/Resources/config/routing.yml"
+    prefix:   /
+
+board:
+    resource: "@BoardBundle/Resources/config/routing.yml"
+    prefix:   /
+

@@ -1,0 +1,150 @@
+<?php
+
+namespace SportChecked\PublicationBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * PublicationComment
+ *
+ * @ORM\Table()
+ * @ORM\Entity
+ */
+class PublicationComment {
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="SportChecked\PublicationBundle\Entity\Publication", inversedBy="comments", cascade={"all"})
+     */
+    private $publication;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="SportChecked\UserBundle\Entity\User")
+     */
+    private $user;
+
+    /**
+     * @var string
+     * 
+     * @ORM\Column(name="user", type="string", length=255)
+     */
+    private $comment;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created", type="datetime")
+     */
+    private $created;
+
+    /**
+     * Set default values
+     *
+     * @return PublicationComment
+     */
+    public function __construct() {
+        $this->created = new \DateTime();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId() {
+        return $this->id;
+    }
+
+    /**
+     * Set publication
+     *
+     * @param string $publication
+     * @return PublicationComment
+     */
+    public function setPublication(\SportChecked\PublicationBundle\Entity\Publication $publication = null) {
+        $this->publication = $publication;
+
+        return $this;
+    }
+
+    /**
+     * Get publication
+     *
+     * @return string 
+     */
+    public function getPublication() {
+        return $this->publication;
+    }
+
+    /**
+     * Set user
+     *
+     * @param string $user
+     * @return PublicationComment
+     */
+    public function setUser(\SportChecked\UserBundle\Entity\User $user) {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return string 
+     */
+    public function getUser() {
+        return $this->user;
+    }
+
+    /**
+     * Set comment
+     *
+     * @param string $comment
+     * @return PublicationComment
+     */
+    public function setComment($comment) {
+        $this->comment = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Get comment
+     *
+     * @return string 
+     */
+    public function getComment() {
+        return $this->comment;
+    }
+
+    /**
+     * Set created
+     *
+     * @param \DateTime $created
+     * @return PublicationComment
+     */
+    public function setCreated($created) {
+        $this->created = $created;
+
+        return $this;
+    }
+
+    /**
+     * Get created
+     *
+     * @return \DateTime 
+     */
+    public function getCreated() {
+        return $this->created;
+    }
+
+}

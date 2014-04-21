@@ -1,0 +1,5 @@
+{% if following %}
+    {% for contact in following %}
+        {% include "UserBundle:Default:userPrint.html.twig" with {'user': contact.contact, 'starts': contact.starts}%}
+    {% endfor %}
+{% endif %}

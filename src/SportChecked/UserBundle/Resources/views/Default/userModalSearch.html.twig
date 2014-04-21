@@ -1,0 +1,15 @@
+{% extends "UserBundle:Default:modalLayout.html.twig" %}
+
+{% block stylesheets %}
+<link href="{{ asset('bundles/publication/css/publication.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block actions %}
+<div class="pub-modal-actions">
+    <h2>Buscar personas</h2>
+    <form action="{{ path('user_search') }}" method="post" {{form_enctype(form) }}>
+        {{ form_widget(form.text) }}
+        <button type="submit" name="search" class="button-blue">Buscar</button>    
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends '::base.html.twig' %}
+
+{% block headermenu %}
+<div id="header-menu">
+	<div id="header-menu-content" class="centered" align="center">
+		<ul class="ws_css_cb_menu videoCssMenu">
+			<li>
+				<a href="#"><span class="inactive"><strong>< Anterior</strong></span></a>
+			</li>
+			<li>
+				<a href="{{ path('index') }}"><span class="inactive"><strong>Saltar Intro</strong></span></a>
+			</li>
+			<li>
+				<a href="{{ path('sport_wellcome') }}"><span><strong>Siguiente ></strong></span></a>
+			</li>
+		</ul>
+	</div>			
+</div>
+{% endblock %}
+
+{% block container %}
+<div id="wrapper-container" class="centered">
+    <div id="search-row">
+        <div class="search-center">
+            <div class="search-text">
+                <h1>
+                    <span style="font-weight: normal;">¡Bienvenid@ </span>{{ app.user.name }}!
+                </h1>
+                <p style="font-size: 14px;padding: 5px;">A continuación te proponemos seguir cuatro sencillos pasos que pueden servirte de ayuda para iniciar tu camino en SportChecked.</p> 
+                <p style="font-size: 14px;padding: 2px;"><strong>Estamos en fase beta (pruebas).</strong></p> 
+                <p style="font-size: 14px;padding: 2px;"><strong>Ante cualquier problema, duda o sugerencia puedes enviarnos un mensaje pinchando el botón</strong> 
+                        <a href="{{ url('message_new') }}" class="iframe">
+                            <img src="{{ asset('bundles/publication/images/app/mail.png') }}" alt="Feedback" title="Feedback"/>
+                        </a>
+                </p> 
+            </div>    
+        </div>
+    </div>
+    <div id="container-fixed">    
+        <div class="container-action " >										
+                <img src="{{ asset('bundles/publication/images/app/intro-create.png') }}">
+                <h2><strong>Crea</strong></h2>
+                <p>Genera contenido de calidad y conviértete en un usuario de referencia. Si tienes una web o blog, consigue más visibidad publicando en SportChecked.</p>
+        </div>
+        <div class="container-action" >
+                <img src="{{ asset('bundles/publication/images/app/intro-share.png') }}">
+                <h2><strong>Comparte</strong></h2>
+                <p>Haz llegar a tus seguidores todas aquellas publicaciones que creas que les pueden interesar con tan solo un clic. ¡Compartir nos hace mejores!</p>
+        </div>
+        <div class="container-action">
+                <img src="{{ asset('bundles/publication/images/app/intro-save.png') }}">
+                <h2><strong>Guarda</strong></h2>
+                <p>Almacena de forma organizada toda la información que quieras volver a consultar más tarde. Gestiona tú mismo las carpetas donde guardar las publicaciones.</p>
+        </div>	
+    </div>
+</div>            
+{% endblock %}
+
+{% block footercenter %}
+<div id="footer-loading">
+    <img src="{{ asset('bundles/publication/images/app/loading.gif') }}"/>
+</div>
+{% endblock %}

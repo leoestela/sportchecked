@@ -1,0 +1,39 @@
+<div class="board element" id="{{ board.id }}">
+    <div class="element-title border-b-grey-m">
+        <p>
+            <a href="{{ url('user_board_publications', { 'userSlug': board.user.slug, 'boardId': board.id  }) }}">
+                {{ board.name }}
+            </a>
+        </p>
+    </div>
+    <div class="element-row border-t-grey-l"> 
+        <p class="element-subtitle"><strong>{% if board.category %}- {{ board.category.name }} -{% else %}-{% endif %} </strong></p>
+    </div>  
+    <div class="element-row"> 
+        <a href="{{ url('user_board_publications', { 'userSlug': board.user.slug, 'boardId': board.id  }) }}">    
+            <div class="element-image centered">
+                <div class="element-hidden centered">
+                    {% if board.photo %}
+                    <img class="centered" src="{{ asset('uploads/board/images/' ~board.photo) }}"/>
+                    {% endif %} 
+                </div>
+            </div>
+        </a>  
+    </div>    
+    <div class="element-row border-b-grey-m"> 
+        <div class="element-statistics">
+            <div class="element-info-xl">
+                <a href="{{ url('user_board_publications', { 'userSlug': board.user.slug, 'boardId': board.id  }) }}"><strong>Publicaciones</strong></a>
+                <p><span id="numPublications{{ board.id }}">{{ board.publications }}</span></p>
+            </div>
+        </div>
+    </div>
+    <div class="element-button centered border-t-grey-l">
+        {% if app.user == board.user %}
+            <a id="buttonEdit{{ board.id }}" href="{{ url('board_edit', { 'boardId': board.id }) }}" 
+               class="button-grey centered iframe">
+                Editar carpeta
+            </a>
+        {% endif %}    
+    </div>
+</div>

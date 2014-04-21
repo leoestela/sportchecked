@@ -1,0 +1,32 @@
+<ul class='ws_css_cb_menum' style='width:{{ size }}px;'>
+	<li>
+		<a href="{{ url('list_checked', { 'listId': all }) }}"><strong>Todos</strong>
+		
+		{% if checked == all %}
+			<img src="{{ asset('bundles/publication/images/app/check.png') }}" alt=">" border="0" height="5" width="5"/>
+		{% endif %}
+		
+		</a>
+	</li>
+        {% if contacts > 0 %}
+            <li>
+                    <a href="{{ url('list_checked', { 'listId': my }) }}"><strong>Mis contactos</strong>
+
+                    {% if checked == my %}
+                            <img src="{{ asset('bundles/publication/images/app/check.png') }}" alt=">" border="0" height="5" width="5"/>
+                    {% endif %}
+
+                    </a>
+            </li> 
+        {% endif %}
+	{% for list in lists %}
+	<li>
+		<a href="{{ url('list_checked', { 'listId': list.id }) }}">{{ list.name }}
+		
+		{% if list.id == checked %}
+			<img src="{{ asset('bundles/publication/images/app/check.png') }}" alt=">" border="0" height="5" width="5"/>
+		{% endif %}
+		</a>
+	</li>
+	{% endfor %}
+</ul>

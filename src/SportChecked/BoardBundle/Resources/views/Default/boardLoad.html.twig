@@ -1,0 +1,7 @@
+{% if boards %}
+    {% for board in boards %}
+            {% include "BoardBundle:Default:boardPrint.html.twig"  
+                        with {'board'         : board
+            }%}
+    {% endfor %}
+{% endif %}

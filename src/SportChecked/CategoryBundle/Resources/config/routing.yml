@@ -1,0 +1,7 @@
+category_checked:
+    pattern: /category/{categoryId}/
+    defaults: { _controller: CategoryBundle:Default:categoryChecked }
+    
+category_menu_elements:
+    pattern: /category/menu/elements/
+    defaults: { _controller: CategoryBundle:Default:categoryMenuElements }    

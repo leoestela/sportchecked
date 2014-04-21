@@ -1,0 +1,23 @@
+<div class="selectContainer">
+    {% if selectedBoard %}
+    <div class="selectBox">
+        <span id="newFolder{{ selectedBoard.id }}" class="selected">{{ selectedBoard.name }}</span>
+    {% else %}
+    <div class="selectBox">
+        <span id="selectedFolder" class="selected">Selecciona carpeta</span>	
+    {% endif %}
+        <span class="selectArrow">&#9660;</span>
+        <div id="selectOptions" style="display: block;" class="selectOptions">
+            {% if boards %}
+                {% for board in boards %}
+                <span class="selectOption" id="{{ board.id }}">{{ board.name }}</span>
+                {% endfor %}
+                <span class="newOption">
+                    <label>Crear nueva carpeta</label>
+                    <input id="newBoardName" type="text">
+                    <button id="newBoardAction" class="button-grey" type="submit">+</button>
+                </span>
+            {% endif %}
+        </div>
+    </div>
+</div>

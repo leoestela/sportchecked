@@ -1,0 +1,164 @@
+{% extends '::base.html.twig' %}
+
+{% block headermenu %}
+<div id="header-menu">
+    <div id="header-menu-content" class="centered" align="center">
+        <ul class="ws_css_cb_menu videoCssMenu">
+            <li>
+                <a href="{{ path('static_page', { 'page': 'help' }) }}"><span><strong>Guía de Usuario</strong></span></a>
+            </li>
+            <li>
+                <a href="{{ path('static_page', { 'page': 'about' }) }}"><span class="inactive"><strong>Sobre Nosotros </strong></span></a>
+            </li>
+            <li>
+                <a href="{{ path('static_page', { 'page': 'legal' }) }}"><span class="inactive"><strong>Términos y Condiciones</strong></span></a>
+            </li>
+        </ul>
+    </div>			
+</div>
+{% endblock %}
+
+{% block container %}
+<div id="wrapper-container" class="centered">
+    <div id="search-row">
+        <div class="search-center">
+            <div class="search-text">
+                <h1>
+                    Guía de Usuario
+                </h1>   
+            </div>    
+        </div>
+    </div>
+    <div id="container-fixed">    
+        <div class="container-text">										
+                <h2>Página principal</h2>
+                <p>Esta página muestra las últimas publicaciones editadas o compartidas en SportChecked. 
+                   Cuando recorras el listado de publicaciones hacia abajo, observarás que cada vez que llegues al final de la página se irán 
+                   cargando publicaciones anteriores, en el caso de que aún existan publicaciones por mostrar.
+                </p>
+                <h3>Filtrar publicaciones</h3>
+                <p>Existen una serie de filtros que te ayudarán a seleccionar mejor las publicaciones que te interesan:</p>
+                <ul>
+                    <li><p><strong>Deportes:</strong></p>
+                        <p>Si aun no has seleccionado ningún deporte no podrás indicar de qué deporte en concreto quieres visualizar publicaciones. 
+                           Observarás que la única opción disponible es “Todos”, la cual mostrará publicaciones de cualquier disciplina. 
+                           Cada deporte que elijas se irá incorporando al listado de este filtro, permitiéndote visualizar publicaciones únicamente 
+                           del deporte seleccionado. Además, enseguida que selecciones al menos un deporte, se creará también la opción 
+                           “Mis deportes”, mediante la podrás visualizar las publicaciones de cualquiera de los deportes que estás siguiendo.
+                        </p>
+                    </li>
+                    <li><p><strong>Modalidades:</strong></p>
+                        <p>Como bien sabrás, muchos deportes admiten varias modalidades de práctica. Desplegando este filtro se mostrarán las que 
+                            hemos definido en SportChecked: “Todas”, para visualizar publicaciones de cualquier modalidad, “Mujeres”, que mostrará
+                            publicaciones de deporte femenino, “Hombres”, para mostrar publicaciones en disciplina masculina y “Mixto” para 
+                            publicaciones sobre deportes practicado en modalidad mixta.  
+                        </p>
+                    </li>
+                    <li><p><strong>Categorías:</strong></p>
+                        <p>Cuando se crea una publicación, ésta necesariamente se guarda en una carpeta creada y gestionada por el usuario
+                            (hablaremos de ello más adelante). Dicha carpeta puede ir asociada a una categoría (Juegos, Rutas, Vídeos, etc.). 
+                            Filtrando por categoría visualizaremos aquellas publicaciones que se hayan vinculado a la categoría seleccionada.
+                        </p>
+                    </li>
+                    <li><p><strong>Usuarios:</strong></p>
+                        <p>Cada usuario tiene a su disposición la posibilidad de crear sus propias listas de usuarios (también ampliaremos esta 
+                            información). Si aun no has creado ninguna y no sigues a ningún usuario, la única opción disponible será “Todos”, con 
+                            lo cual se mostrarán publicaciones de cualquier usuario. En el momento en que sigas a algún usuario, aparecerá también 
+                            la opción “Mis usuarios”, que te permitirá que se muestren únicamente las publicaciones de aquellos usuarios que estés 
+                            siguiendo. Por último, cada vez que crees una lista de usuarios, esta se incorporará al listado de opciones. Al 
+                            seleccionar una, únicamente se mostrarán las publicaciones de los usuarios de esa lista.   
+                        </p>
+                    </li>
+                </ul>
+                <p>Además de las opciones para filtrar las publicaciones mostradas, la página principal presenta otros elementos con los que 
+                    podremos realizar funciones importantes dentro de la aplicación. Los detallamos a continuación.
+                </p>
+                <h3>Campo de búsqueda</h3>
+                <p>Te permitirá hacer búsquedas por texto de publicaciones, deportes o usuarios. En la primera búsqueda llegaremos directamente a 
+                    la sección de búsqueda de publicaciones. Arriba observarás los botones “Publicaciones”, “Deportes” y “Usuarios”. Clicando sobre 
+                    ellos podrás acceder a la sección que desees. La siguiente búsqueda te llevará a la última sección que hayas elegido.
+                </p>
+                <h3>Botón “Añadir”</h3>
+                <p>Puedes usarlo para incluir nuevas publicaciones, crear carpetas o listas. También podrás crear estos elementos desde la sección 
+                    adecuada dentro de tus páginas de usuario.
+                </p>
+                <h3>Menú de usuario</h3>
+                <p>Se divide en varias secciones que permitirán mostrar todas tus actividades, como son las publicaciones que has creado, 
+                    compartido o guardado, las carpetas que gestionas, los deportes que sigues, tus seguidores, a qué otros usuarios estás 
+                    siguiendo y qué listas has creado.
+                </p>   
+                <p>Opcionalmente, desde este menú podrás modificar tu perfil de usuario, visitar las páginas de información (guía de usuario, la 
+                    sección “Sobre nosotros” y los términos y condiciones) o cerrar tu sesión y salir de la aplicación.
+                </p>
+                <p>Explicaremos el contenido de cada sección en el siguiente apartado.</p>
+                <h2 style="padding-bottom: 5px;padding-top: 20px;">Páginas de usuario</h2>
+                <p>Las secciones que describíamos anteriormente en el menú de usuario también se encuentran visibles al clicar sobre el nombre de 
+                    algún otro usuario, ya que son accesibles de forma pública. Por tanto también podremos consultar las publicaciones, las 
+                    carpetas, los deportes, los seguidores, los usuarios que sigue y las listas de cualquier otro usuario de la aplicación.
+                </p>
+                <p>Las páginas de usuario muestran las diferentes actividades que ha desarrollado el usuario en SportChecked y son accesibles de 
+                    forma pública.
+                </p>
+                <h3>Publicaciones</h3>
+                <p>Esta página recoge todas las publicaciones que un usuario ha creado, compartido o guardado, ordenadas de la acción más reciente 
+                    a la más antigua.
+                </p>
+                <p>Desde tu propia página de publicaciones podrás crear nuevas, de igual forma que desde el botón “añadir” que aparece en la 
+                    página principal.
+                </p>
+                <p>Una publicación puede incluir un enlace a cualquier sitio web, aunque no es algo obligatorio. Sí son obligatorios los campos 
+                    que recogen el deporte al que se refiere la publicación y su título. Se puede incluir además un subtítulo, un texto y una 
+                    imagen. Para cualquier publicación que creemos, deberemos indicar en qué carpeta se guardará.
+                </p>
+                <p>Si alguna publicación creada por otro usuario nos resulta interesante podremos o bien compartirla con nuestros seguidores, o 
+                    bien guardarla en alguna de las carpetas que hayamos creado. Cuando guardamos una publicación, también la hacemos visible para 
+                    nuestros seguidores. También podremos incluir comentarios referidos a la publicación u observar los comentarios de otros 
+                    usuarios.
+                </p>
+                <h3>Carpetas</h3>
+                <p>Visitando esta sección observaremos las carpetas creadas por el usuario. Desde la nuestra en particular podremos crear más 
+                    carpetas, al igual que podríamos hacerlo a través del botón “Añadir”. Para ello tan solo es necesario informar del nombre de 
+                    la nueva carpeta, si bien también podremos incluir una descripción, una foto, o indicar que pertenece a una categoría en 
+                    concreto, lo que hará que las publicaciones guardadas en esa carpeta se marquen con esa categoría, lo cual resultará útil a la 
+                    hora de filtrar publicaciones en la página principal. Clicando sobre una carpeta podremos visualizar las publicaciones que 
+                    contiene.
+                </p>
+                <h3>Deportes</h3>
+                <p>Cada vez que elegimos seguir un deporte se incluirá en el listado de esta sección. Para seguir más deportes podemos buscarlos a 
+                    través del campo de búsqueda o bien clicando en el enlace al deporte que se muestra en el margen superior izquierdo de cada 
+                    publicación.
+                </p>
+                <h3>Seguidores</h3>
+                <p>Cuando alguien empieza a seguirnos, aparecerá en esta sección. Si nos interesara seguir a alguno de nuestros seguidores lo 
+                    podemos hacer simplemente clicando en el botón “Seguir” que aparece en la parte inferior de la ficha del usuario.
+                </p>
+                <h3>Siguiendo</h3>
+                <p>Este apartado muestra la totalidad de usuarios a los que hemos elegido seguir. Cuando seguimos a un usuario podemos observar 
+                    que en la parte inferior de su ficha aparecen dos botones. El de color azul indica que lo estamos siguiendo y si nos 
+                    posicionamos sobre él cambiará a rojo, indicando “Dejar de seguir”. Clicando dejaremos de seguir a ese usuario. El otro botón 
+                    nos servirá para añadir a ese usuario en cualquiera de las listas de usuarios que hayamos creado previamente.
+                </p>
+                <h3>Listas</h3>
+                <p>Como en el caso de las publicaciones o de las carpetas, desde esta sección podremos dar de alta nuevas listas o modificar los 
+                    datos de alguna lista existente. Los campos de que disponemos son solo tres; el nombre, que es el único obligatorio, una 
+                    descripción y una foto. Como indicamos anteriormente, el proceso para incluir usuarios en una lista se debe hacer desde el 
+                    botón que aparece en el margen inferior de la ficha de los usuarios que seguimos. Un usuario puede incluirse en todas las 
+                    listas que queramos. Desde la ventana para incluir el usuario en una o varias listas también tendremos la opción de crear más 
+                    listas de contactos.
+                </p>
+                <h3>Perfil de usuario</h3>
+                <p>Desde esta pantalla podremos modificar nuestros datos de usuario. Podremos acceder desde el menú de usuario (“Configuración”) o 
+                    bien desde cualquiera de las secciones de nuestras páginas de usuario (“Editar perfil”). Mediante el formulario podremos 
+                    modificar nuestra foto o avatar, nuestro nombre, correo electrónico, nombre de usuario, género, biografía o introducción, 
+                    nuestra ubicación, país de origen o nuestra página web.
+                </p>
+        </div>	
+    </div>
+</div>            
+{% endblock %}
+
+{% block footercenter %}
+<div id="footer-loading">
+    <img src="{{ asset('bundles/publication/images/app/loading.gif') }}"/>
+</div>
+{% endblock %}

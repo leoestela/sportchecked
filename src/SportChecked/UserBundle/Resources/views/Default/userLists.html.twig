@@ -1,0 +1,60 @@
+{% extends "UserBundle:Default:layout.html.twig" %}
+
+{% block stylesheets %}
+<link href="{{ asset('bundles/user/css/user.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block headermenu %}
+    {% include "UserBundle:Default:userMenu.html.twig" with { 'option': 6, 'user': user }%}
+{% endblock %}
+
+{% block info %}
+    {% include "UserBundle:Default:userInfo.html.twig" with { 'user'   : user }%}
+    <div class="container-title">
+        <p class="user-container-title">
+            <strong>
+            {{ user.nlists }} {% if user.nlists == 1 %}lista{% else %}listas{% endif %}
+            </strong>
+        </p>
+    </div>
+{% endblock %}
+
+{% block elements %}
+    {% if app.user == user %}
+        {% include "ContactBundle:Default:listPrintNew.html.twig"%}
+    {% endif %}
+    {% for list in lists %}
+        {% include "ContactBundle:Default:listPrint.html.twig" with {'list': list}%}
+    {% endfor %}
+{% endblock %}
+
+{% block footercenter %}
+<div id="footer-loading">
+    <img src="{{ asset('bundles/publication/images/app/loading.gif') }}"/>
+</div>
+{% endblock %}
+
+{% block javascripts %}  
+<script type="text/javascript">
+    /* Load lists with masonry */
+    $( document ).ready(function() {
+        var $container = $('#container');
+        var $elementClass = '.list';
+        var $elementWidth = 336;
+        var $urlIn = '{{ url('user_lists_load', { 'userSlug': user.slug, 'lastElement': '+lastElement+' }) }}';
+        var $messageOut = 'No hay más listas para mostrar';
+        
+        $container.imagesLoaded(function() {
+            $container.masonry({
+                itemSelector: $elementClass,
+                columnWidth: $elementWidth,
+                isFitWidth: true
+            });
+        });
+        /* Loading more lists */
+        loadElements($container, $elementClass, $urlIn, $messageOut);
+        
+        userActions($container); 
+    });     
+</script>
+{% endblock %}

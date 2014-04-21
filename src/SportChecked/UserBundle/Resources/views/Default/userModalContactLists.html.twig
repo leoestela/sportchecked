@@ -1,0 +1,59 @@
+{% extends "UserBundle:Default:modalLayout.html.twig" %}
+
+{% block stylesheets %}
+<link href="{{ asset('bundles/user/css/user.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block elements %}
+<div class="user element">
+    <div id="user-name" class="element-title border-b-grey-m">
+        <p>
+            <a href="{{ url('user_publications', { 'userSlug': contact.contact.slug }) }}">
+                {{ contact.contact.name }}
+            </a>
+        </p>
+    </div>  
+    <div id="user-info" class="element-row border-t-grey-l">
+        <div class="element-body centered">
+            <div class="element-avatar">
+                {% if contact.contact.photo %}
+                    <img src="{{ asset('uploads/user/images/' ~contact.contact.photo) }}" title="{{ contact.contact.name }}" border="0"/>
+                {% else %}
+                    <img src="{{ asset('bundles/user/images/default.png') }}"/>
+                {% endif %}
+            </div>
+            <p>{{ contact.contact.intro }}</p>
+        </div>        
+    </div>
+    <div class="element-title2">
+        <p>Incluir a {{ contact.contact.name }} en:</p>
+    </div>
+    <div id="user-lists" class="element-row border-b-grey-m"> 
+        <ul>
+        {% for list in lists %}
+           <li>
+               {% if list.members|length > 0 %}
+                        <a href="{{ url('list_delete_member', {'listId': list.id, 'contactId': contact.id}) }}">
+                            <div class="checkbox">
+                                <img src="{{ asset('bundles/publication/images/app/check.png') }}"/>
+                             </div>
+                        </a>
+                           
+               {% else %}
+                   <a href="{{ url('list_add_member', {'listId': list.id, 'contactId': contact.id}) }}">
+                            <div class="checkbox"></div>
+                   </a>
+               {% endif %} 
+               {{ list.name }}  
+           </li> 
+        {% endfor %}
+        </ul>
+    </div>
+    <div id="user-button" class="element-button centered border-t-grey-l">
+        <a id="cancelButton" class="button-grey" href="#" onclick="parent.$.fn.colorbox.close();" style="float:right;">Salir</a>        
+        <a  href="{{ url('list_new_from_contact', {'contactSlug': contact.contact.slug}) }}" class="button-grey" style="float:left;">
+            Crear lista
+        </a>
+    </div>    
+</div>
+{% endblock %}

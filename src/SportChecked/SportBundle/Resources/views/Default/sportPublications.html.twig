@@ -1,0 +1,113 @@
+{% extends "UserBundle:Default:layout.html.twig" %}
+
+{% block stylesheets %}
+<link href="{{ asset('bundles/publication/css/publication.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('bundles/user/css/user.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block headermenu %}
+{% endblock %}
+
+{% block info %}
+<div id="search-row">
+    <div class="search-center">
+        <div class="search-text">
+            <h1>
+                <span style="font-weight: normal;">Publicaciones de </span>{{ sport.name }}
+            </h1>       
+        </div>
+         <div class="search-combo">
+            <div class="comboBox">    
+                <select name="selCombo" id="selCombo"> 
+                    <option value="" {% if not(modality) %}selected{% endif %}>Cualquier modalidad</option>
+                    <option value="female" {% if modality == 'female' %}selected{% endif %}>Femenino</option>
+                    <option value="male" {% if modality == 'male' %}selected{% endif %}>Masculino</option>
+                    <option value="mixed" {% if modality == 'mixed' %}selected{% endif %}>Mixto</option> 
+                </select> 
+            </div> 
+        </div>    
+        <div class="search-buttons">
+            {% if not is_granted('ROLE_USER') %}
+                <a  id="buttonFollow{{ sport.id }}"
+                    href="{{ path('login') }}" class="buttonFollow button-grey">
+                    Seguir deporte
+                </a>             
+            {% else %}    
+                {% if sport.followers %}
+                    {% if sport.followers|length > 0 %}
+                        {% set count = 1 %}
+                    {% else %}
+                        {% set count = 0 %}
+                    {% endif %}  
+                {% else %}
+                    {% set count = 0 %}
+                {% endif %}
+                <a id="buttonUnfollow{{ sport.id }}" {% if count == 0 %}style="display:none;"{% endif %}
+                    href="{{ url('user_unfollow_sport', { 'sportId': sport.id }) }}" class="buttonUnfollow button-blue">
+                    Siguiendo deporte
+                </a>
+                <a  id="buttonFollow{{ sport.id }}" {% if count == 1 %}style="display:none;"{% endif %} 
+                    href="{{ url('user_follow_sport', { 'sportId': sport.id }) }}" class="buttonFollow button-grey">
+                    Seguir deporte
+                </a>
+            {% endif %}    
+        </div>
+        {% if publications|length <= 0%}    
+        <div class="search-noresults">
+            <h2>
+                No se ha encontrado ninguna publicación
+            </h2>
+        </div>
+        {% endif %}     
+    </div>
+</div>
+{% endblock %}
+
+{% block elements %}
+    {% for publication in publications %}
+        {% include "PublicationBundle:Default:publicationPrint.html.twig"  
+                    with {'publication'         : publication.publication,
+                          'actionUser'          : publication.user,
+                          'lastAction'          : publication.lastaction
+        }%}
+    {% endfor %}
+{% endblock %}
+
+{% block footercenter %}
+<div id="footer-loading">
+    <img src="{{ asset('bundles/publication/images/app/loading.gif') }}"/>
+</div>
+{% endblock %}
+
+{% block javascripts %}        
+<script type="text/javascript">
+    /* Load publications with masonry */
+    $( document ).ready(function() {
+        var $container = $('#container');
+        var $elementClass = '.pub';
+        var $elementWidth = 336;
+        var $urlIn='';
+        {% if not(modality) %}
+            $urlIn='{{ url('sport_publications_load', { 'sportId': sport.id, 'lastElement': '+lastElement+' }) }}';
+        {% else %}
+            $urlIn='{{ url('sport_modality_publications_load', { 'sportId': sport.id, 'modalityId': modality, 'lastElement': '+lastElement+' }) }}';
+        {% endif %}
+        var $messageOut = 'No hay más publicaciones para mostrar';
+
+        $container.imagesLoaded(function() {
+            $container.masonry({
+                itemSelector: $elementClass,
+                columnWidth: $elementWidth,
+                isFitWidth: true
+            });
+        });
+        /* Loading more publications */
+        loadElements($container, $elementClass, $urlIn, $messageOut);
+        /* Show and hide action buttons for publications */
+        publicationActions($container);
+        sportSelect('{{ url('sport_modality_publications', { 'sportId': sport.id, 'modalityId': '+modalityId+' }) }}',
+        '{{ url('sport_publications', { 'sportId': sport.id }) }}');  
+        sportActions($container); 
+    });     
+</script>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "PublicationBundle:Default:modalLayout.html.twig" %}
+
+{% block stylesheets %}
+<link href="{{ asset('bundles/publication/css/publication.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block actions %}
+<div class="pub-modal-actions">
+    <h2>¿Guardar esta publicación?</h2>
+        {% if publication.actions %}
+            {% if publication.actions|length > 0 %}
+                {% for status in publication.actions %}
+                {% if loop.first %}
+                {{ render(controller('BoardBundle:Default:boardComboBox', { 'publication': publication, 'selectedBoard' : status.board })) }}
+                {% endif %}
+                {% endfor %}
+            {% else %}
+            {{ render(controller('BoardBundle:Default:boardComboBox', { 'publication': publication, 'selectedBoard' : null })) }}
+            {% endif %}
+        {% else %}
+        {{ render(controller('BoardBundle:Default:boardComboBox', { 'publication': publication, 'selectedBoard' : null })) }}
+        {% endif %}
+</div>
+<div class="pub-modal-buttons">
+    {% if publication.actions %}
+        {% if publication.actions|length > 0 %}
+            {% for status in publication.actions %}
+            {% if loop.first %}
+            <a id="buttonDelete"  href="#" class="button-grey pub-modal-a-left">Eliminar</a>
+            {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endif %}
+    <a id="buttonSave" href="#" class="button-blue pub-modal-a-right">Guardar</a>            
+    <a id="cancelButton" class="button-grey pub-modal-a-left" href="#" onclick="parent.$.fn.colorbox.close();">Cancelar</a> 
+</div>
+{% endblock %}
+
+{% block elements %}
+    {% include "PublicationBundle:Default:publicationPrint.html.twig"  
+                with {'publication' : publication, 
+                      'actionUser'  : publication.user,
+                      'lastAction'  : null
+    }%}
+{% endblock %}
+
+{% block javascripts %}
+<script type="text/javascript">
+        /* Habilita el select simulado */
+        $(document).ready(function() {
+            enableSelectBoxes();
+            $('div.selectBox').children('span.selectArrow').click();
+            /* Creación de una nueva carpeta */
+            newBoard("{{ path('board_new_from_combo') }}");
+            /* Guarda la publicación en la carpeta seleccionada */
+            publicationSave("{{ url('publication_save', { 'publicationId': publication.id, 'boardId': '+boardElement+' }) }}",
+                            "{{ url('user_board_publications', { 'userSlug': publication.user.slug, 'boardId': '+boardElement+' }) }}");
+            /* Elimina un publicación guardada previamente */
+            publicationDelete("{{ url('publication_delete', { 'publicationId': publication.id }) }}");
+        });
+</script>
+{% endblock %}

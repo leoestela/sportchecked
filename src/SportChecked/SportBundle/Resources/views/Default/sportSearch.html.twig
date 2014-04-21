@@ -1,0 +1,69 @@
+{% extends "UserBundle:Default:layout.html.twig" %}
+
+{% block stylesheets %}
+<link href="{{ asset('bundles/user/css/user.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block headermenu %}
+{% endblock %}
+
+{% block info %}
+<div id="search-row">
+    <div class="search-center">
+        <div class="search-text">
+            <h1>
+                <span style="font-weight: normal;">Resultados de deportes para</span> "{{ text }}"
+            </h1>
+        </div>
+        <div class="search-buttons">
+            <a href="{{ path('publication_search_button') }}" class="button-grey">Publicaciones</a>
+            <a href="{{ path('user_search_button') }}" class="button-grey">Personas</a>
+            <a href="{{ path('sport_search_button') }}" class="button-blue">Deportes</a>
+        </div>
+        {% if sports|length <= 0%}    
+        <div class="search-noresults">
+            <h3>
+                No se ha encontrado ningún resultado
+            </h3>
+        </div>
+        {% endif %}               
+    </div>
+</div>
+{% endblock %}
+
+{% block elements %}
+    {% for sport in sports %}
+        {% include "SportBundle:Default:sportPrint.html.twig" with {'sport': sport, 'starts': null}%}
+    {% endfor %}
+{% endblock %}
+
+{% block footercenter %}
+<div id="footer-loading">
+    <img src="{{ asset('bundles/publication/images/app/loading.gif') }}"/>
+</div>
+{% endblock %}
+
+{% block javascripts %}  
+<script type="text/javascript">
+    /* Load sports with masonry */
+    $( document ).ready(function() {
+        var $container = $('#container');
+        var $elementClass = '.sport';
+        var $elementWidth = 336;
+        var $urlIn = '{{ url('sport_search_load', { 'lastElement': '+lastElement+' }) }}';
+        var $messageOut = 'No hay más deportes para mostrar';
+        
+        $container.imagesLoaded(function() {
+            $container.masonry({
+                itemSelector: $elementClass,
+                columnWidth: $elementWidth,
+                isFitWidth: true
+            });
+        });
+        /* Loading more sports */
+        loadElements($container, $elementClass, $urlIn, $messageOut);
+        /* Buttons operative */            
+        sportActions($container);  
+    });
+</script>
+{% endblock %}

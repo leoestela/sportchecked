@@ -1,0 +1,109 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+<link href="{{ asset('bundles/board/css/board.css') }}" rel="stylesheet" type="text/css" />
+<style>
+    .prev_container{
+        overflow: hidden;
+        max-width: 286px;
+        min-height: 94px;
+        text-align: center;
+        margin-bottom: 5px;
+    }
+    .prev_thumb{
+        margin: 0 auto;
+        text-align: center;
+        max-width: 286px;
+    }
+</style>
+{% endblock %}
+
+{% block header %}
+    <div id="header-modal-left">
+        <div id="header-modal-left-content">
+            <a href="{{ path('index') }}">
+                <img id="header-modal-logo" src="{{ asset('bundles/publication/images/app/logo.png') }}" alt="SportChecked"/>
+            </a>  
+        </div>
+    </div>
+    <div id="header-modal-right">
+        <div id="header-modal-right-content">
+            <a href="#" onclick="parent.$.fn.colorbox.close();">
+                <img src="{{ asset('bundles/publication/images/app/close-orange.png') }}" alt="Cerrar" title="Cerrar"/>
+            </a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block container %}
+    <div id="wrapper-container-modal" class="centered">
+        <div id="container-modal-light" class="centered">
+            <div class="pub-modal-actions">
+                <h2>Editar carpeta</h2>
+            </div>            
+        </div>
+        <form id="newBoard" action="{{ url('board_edit', { 'boardId': board.id }) }}" method="post" {{form_enctype(form) }}>    
+            <div id="container-modal" class="centered">
+                <div class="board">
+                    <div class="board-title border-b-grey-m">
+                        <div class="form-row">
+                            <div class="form-data board-textarea">
+                                {{ form_widget(form.name) }}
+                            </div>
+                        </div> 
+                         <div class="form-row">
+                            <div class="form-data board-textarea-s">
+                                {{ form_widget(form.description) }}
+                            </div>
+                        </div>                            
+                    </div>  
+                    <div class="board-category">     
+                        <div class="form-row">
+                            <div class="board-comboBox">
+                                {{ form_widget(form.category) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="board-image centered">
+                        <div class="board-hidden centered">
+                            {% if board.photo %}
+                                <img id="boardphoto" src="{{ asset('uploads/board/images/' ~board.photo) }}" title="{{ board.name }}"/>
+                            {% endif %} 
+                            <div id="prev_sportchecked_boardbundle_boardtype_file"></div>
+                        </div>                 
+                    </div>
+                    <div class="board-select-img">    
+                        <div class="button-grey board-custom-input-file">
+                            {{ form_widget(form.file) }}
+                            Seleccionar imagen
+                            <div class="file">...</div>
+                        </div> 
+                    </div>
+                </div> 
+            </div>        
+            <div id="container-modal-light-footer" class="centered">  
+                <div class="form-row">
+                    {{ form_rest(form) }}
+                    {{ form_errors(form) }}			
+                </div>
+                <div class="board-modal-buttons">                           
+                    <a id="deleteButton" class="button-grey board-modal-a-left" href="{{ url('board_advice', { 'boardId': board.id }) }}">
+                        Eliminar
+                    </a> 
+                    <button class="button-blue board-modal-button-right" type="submit" name="newBoard">
+                        Guardar
+                    </button>                         
+                    <a id="cancelButton" class="button-grey board-modal-a-left" href="#" onclick="parent.$.fn.colorbox.close();">Cancelar</a>  
+                </div>
+            </div>   
+        </form>   
+    </div>
+{% endblock %}
+
+{% block footer %}{% endblock %}
+
+{% block javascripts %}
+    <script>
+        imageFile();
+    </script>
+{% endblock %}

@@ -1,0 +1,7 @@
+parameters:
+#    feature.example.class: SportChecked\FeatureBundle\Example
+
+services:
+#    feature.example:
+#        class: %feature.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

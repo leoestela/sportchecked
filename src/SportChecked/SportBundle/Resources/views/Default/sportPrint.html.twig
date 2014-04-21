@@ -1,0 +1,52 @@
+<div class="sport element" id="{{ sport.id }}_{{ sport.slug }}{% if (starts)%}_{{ starts |date('YmdHis') }}{% endif %}">
+    <div class="element-title border-b-grey-m">
+        <p>
+            <a href="{{ url('sport_publications', { 'sportId': sport.id }) }}">
+                {{ sport.name }}
+            </a>
+        </p>
+    </div>  
+    <div class="element-row border-t-grey-l">
+        <div class="element-body centered">
+            <div class="element-avatar">
+                <img src="{{ asset('bundles/sport/images/' ~sport.icon) }}" title="{{ sport.name }}" border="0"/>	
+            </div>
+            <div class="element-left-text">    
+                <p>{{ sport.description }}</p>
+            </div>    
+        </div>        
+    </div>
+    <div class="element-row border-b-grey-m"> 
+        <div class="element-statistics">
+            <div class="element-info-xl">
+                <a href="#"><strong>Seguidores</strong></a>
+                <p><span id="numFollowersSport{{ sport.id }}">{{ sport.nfollowers }}</span></p>
+            </div>
+        </div>
+    </div>    
+    <div class="element-button centered border-t-grey-l">
+        {% if not is_granted('ROLE_USER') %}
+            <a  href="{{ path('login') }}" class="button-grey">
+                Seguir
+            </a>            
+        {% else %}
+            {% if sport.followers %}
+                {% if sport.followers|length > 0 %}
+                    {% set count = 1 %}
+                {% else %}
+                    {% set count = 0 %}
+                {% endif %}  
+            {% else %}
+                {% set count = 0 %}
+            {% endif %}
+            <a id="buttonUnfollowSport{{ sport.id }}" {% if count == 0 %}style="display:none;"{% endif %}
+                href="{{ url('user_unfollow_sport', { 'sportId': sport.id }) }}" class="buttonUnfollowSport button-blue">
+                Siguiendo
+            </a>
+            <a  id="buttonFollowSport{{ sport.id }}" {% if count == 1 %}style="display:none;"{% endif %} 
+                href="{{ url('user_follow_sport', { 'sportId': sport.id }) }}" class="buttonFollowSport button-grey">
+                Seguir
+            </a>
+         {% endif %}
+    </div>
+</div>
