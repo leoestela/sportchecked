@@ -4,12 +4,12 @@
             <a href="{% if publication.modality %}{{ url('sport_modality_publications', { 'sportId': publication.sport.id, 'modalityId': publication.modality }) }}{% else %}{{ url('sport_publications', { 'sportId': publication.sport.id }) }}{% endif %}">
                 <strong>{{ publication.sport.name }}</strong>
                 {% if publication.modality == 'female' %}
-                <img src="{{ optipng('bundles/publication/images/app/female.png') }}"/> 
+                <img src="{{ asset('bundles/publication/images/app/female.png') }}"/> 
                 {% elseif publication.modality == 'male' %}    
-                <img src="{{ optipng('bundles/publication/images/app/male.png') }}"/>
+                <img src="{{ asset('bundles/publication/images/app/male.png') }}"/>
                 {% elseif publication.modality == 'mixed' %}
-                <img src="{{ optipng('bundles/publication/images/app/female.png') }}"/> 
-                <img src="{{ optipng('bundles/publication/images/app/male.png') }}"/>    
+                <img src="{{ asset('bundles/publication/images/app/female.png') }}"/> 
+                <img src="{{ asset('bundles/publication/images/app/male.png') }}"/>    
                 {% endif %}    
             </a>
         </div>	
@@ -21,24 +21,24 @@
                         {% if loop.first %}
                             {% if status.published %}
                                 <span>	
-                                    <img src="{{ optipng('bundles/publication/images/app/check-green.png') }}"/>
+                                    <img src="{{ asset('bundles/publication/images/app/check-green.png') }}"/>
                                 </span>
                                         {% else %}
                                 <span class="spanSaved{{ publication.id }}" {% if not status.saved %}style="display:none;"{% endif %}>	
-                                    <img src="{{ optipng('bundles/publication/images/app/check-orange.png') }}"/>
+                                    <img src="{{ asset('bundles/publication/images/app/check-orange.png') }}"/>
                                 </span>
                                 <span class="spanShared{{ publication.id }}" {% if not status.shared %}style="display:none;"{% endif %}>	
-                                    <img src="{{ optipng('bundles/publication/images/app/check-blue.png') }}"/>
+                                    <img src="{{ asset('bundles/publication/images/app/check-blue.png') }}"/>
                                 </span>
                             {% endif %}
                         {% endif %}
                     {% endfor %}
                 {% else %}
                     <span class="spanSaved{{ publication.id }}" style="display:none;">	
-                        <img src="{{ optipng('bundles/publication/images/app/check-orange.png') }}"/>
+                        <img src="{{ asset('bundles/publication/images/app/check-orange.png') }}"/>
                     </span>
                     <span class="spanShared{{ publication.id }}" style="display:none;">	
-                        <img src="{{ optipng('bundles/publication/images/app/check-blue.png') }}"/>
+                        <img src="{{ asset('bundles/publication/images/app/check-blue.png') }}"/>
                     </span>
                 {% endif %}
             {% endif %}
@@ -60,7 +60,7 @@
                 <div  class="pub-actions" id="pubact{{ publication.id }}">
                     <div  class="pub-actions-left">
                         <a id="buttonGo{{ publication.id }}"  href="{{ publication.link }}" class="button-grey button-size-xl" target="_blank">
-                            <img src="{{ optipng('bundles/publication/images/app/go-green.png') }}"/> Ir
+                            <img src="{{ asset('bundles/publication/images/app/go-green.png') }}"/> Ir
                         </a>
                     </div>
                     <div  class="pub-actions-right">
@@ -96,13 +96,13 @@
                         {% if vModifyCreated == 'true' %} 
                             <a href="{{ url('publication_edit', { 'publicationId': publication.id }) }}" 
                                class="buttonEdit{{ publication.id }} button-grey iframe">
-                                <img class="button-left-img" src="{{ optipng('bundles/publication/images/app/check-grey.png') }}"/>Modificar
+                                <img class="button-left-img" src="{{ asset('bundles/publication/images/app/check-grey.png') }}"/>Modificar
                             </a>
                         {% else %}        
                             <a href="{{ url('publication_modal_share', { 'publicationId': publication.id }) }}" 
                                class="buttonShare{{ publication.id }} button-grey iframe"
                                {% if vShare != 'true' %}style="display:none;"{% endif %}>
-                                    <img class="button-left-img" src="{{ optipng('bundles/publication/images/app/check-blue.png') }}"/> Compartir
+                                    <img class="button-left-img" src="{{ asset('bundles/publication/images/app/check-blue.png') }}"/> Compartir
                             </a>
                             <a href="{{ url('publication_unshare', { 'publicationId': publication.id }) }}" 
                                class="buttonUnshare buttonUnshare{{ publication.id }} button-grey iframe" 
@@ -113,28 +113,28 @@
                                href="{{ url('publication_modal_save', { 'publicationId': publication.id }) }}" 
                                class="buttonSave{{ publication.id }} button-grey iframe"
                                {% if vSave != 'true' %}style="display:none;"{% endif %}>
-                                    <img class="button-left-img" src="{{ optipng('bundles/publication/images/app/check-orange.png') }}"/> Guardar
+                                    <img class="button-left-img" src="{{ asset('bundles/publication/images/app/check-orange.png') }}"/> Guardar
                             </a>
                             <a href="{{ url('publication_modal_save', { 'publicationId': publication.id }) }}" 
                                class="buttonEdit{{ publication.id }} button-grey iframe" {% if vModifySaved != 'true' %}style="display:none;"{% endif %}>
-                                <img class="button-left-img" src="{{ optipng('bundles/publication/images/app/check-grey.png') }}"/>Modificar
+                                <img class="button-left-img" src="{{ asset('bundles/publication/images/app/check-grey.png') }}"/>Modificar
                             </a>
                         {% endif %}
                         </br>    
                         <a href="{{ url('publication_modal_comments', { 'publicationId': publication.id }) }}" class="button-grey ajax">
-                           <img class="button-left-img" src="{{ optipng('bundles/publication/images/app/check-grey.png') }}"/> Comentar
+                           <img class="button-left-img" src="{{ asset('bundles/publication/images/app/check-grey.png') }}"/> Comentar
                         </a>    
                     {% else %}
                         <a href="{{ path('login') }}" class="buttonShare{{ publication.id }} button-grey">
-                            <img class="button-left-img" src="{{ optipng('bundles/publication/images/app/check-blue.png') }}"/> Compartir
+                            <img class="button-left-img" src="{{ asset('bundles/publication/images/app/check-blue.png') }}"/> Compartir
                         </a>
                         </br>
                         <a href="{{ path('login') }}" class="buttonSave{{ publication.id }} button-grey">
-                            <img class="button-left-img" src="{{ optipng('bundles/publication/images/app/check-orange.png') }}"/> Guardar
+                            <img class="button-left-img" src="{{ asset('bundles/publication/images/app/check-orange.png') }}"/> Guardar
                         </a>
                         </br>
                         <a href="{{ path('login') }}" class="button-grey">
-                            <img class="button-left-img" src="{{ optipng('bundles/publication/images/app/check-grey.png') }}"/> Comentar
+                            <img class="button-left-img" src="{{ asset('bundles/publication/images/app/check-grey.png') }}"/> Comentar
                         </a>
                     {% endif %}
                     </div>
@@ -149,7 +149,7 @@
                     {% if actionUser.photo %}
                         <img src="{{ asset('uploads/user/images/' ~actionUser.photo) }}" alt="No Photo" border="0"/>
                     {% else %}
-                        <img src="{{ optipng('bundles/user/images/default.png') }}"/>
+                        <img src="{{ asset('bundles/user/images/default.png') }}"/>
                     {% endif %} 
                 </a>
             </div>

@@ -3,7 +3,7 @@ html, body {
     margin: 0;
     padding: 0;
     height: 100%;
-    font-family: Arial Black, Arial Black, Gadget, sans-serif;
+    font-family: verdana, sans-serif;
     background: #f6f6f6 url(/bundles/publication/images/app/background.jpg) repeat; 
 }
 a, a:hover, a:visited {
