@@ -34,6 +34,7 @@
     /* Load users with masonry */
     $( document ).ready(function() {
         var $container = $('#container');
+        var $userInfo = $('#userInfo');
         var $elementClass = '.user';
         var $elementWidth = 336;
         var $urlIn = '{{ url('user_list_members_load', { 'userSlug': user.slug, 'listId': list.id, 'lastElement': '+lastElement+' }) }}';
@@ -48,7 +49,7 @@
         });
         /* Loading more users */
         loadElements($container, $elementClass, $urlIn, $messageOut);
-        userActions($container); 
+        userActions($userInfo); 
     });    
 </script>
 {% endblock %}

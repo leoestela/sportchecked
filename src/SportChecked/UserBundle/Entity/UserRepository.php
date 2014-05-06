@@ -37,6 +37,21 @@ class UserRepository extends EntityRepository {
         return $query->getResult();
     }
     
+    public function findUserBySlug($userConnected, $userSlug) {
+        $em = $this->getEntityManager();
+        $dql = 'SELECT u, f
+		  FROM UserBundle:User u
+             LEFT JOIN u.followers f WITH f.follower = :userConnected
+                 WHERE u.slug = :userSlug';
+
+        $query = $em->createQuery($dql);
+        
+        $query->setParameter('userConnected', $userConnected);
+        $query->setParameter('userSlug', $userSlug);
+
+        return $query->getOneOrNullResult();
+    }    
+    
     public function findOptionsByUser($user) {
         $em = $this->getEntityManager();
         $dql = 'SELECT u, c, s

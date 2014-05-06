@@ -40,6 +40,7 @@
     /* Load boards with masonry */
     $( document ).ready(function() {
         var $container = $('#container');
+        var $userInfo = $('#userInfo');
         var $elementClass = '.board';
         var $elementWidth = 336;
         var $urlIn = '{{ url('user_boards_load', { 'userSlug': user.slug, 'lastElement': '+lastElement+' }) }}';
@@ -55,7 +56,7 @@
         /* Loading more boards */
         loadElements($container, $elementClass, $urlIn, $messageOut);
         
-        userActions($container); 
+        userActions($userInfo); 
     });    
 </script>
 {% endblock %}

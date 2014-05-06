@@ -32,6 +32,7 @@
     /* Load contacts with masonry */
     $( document ).ready(function() {
         var $container = $('#container');
+        var $userInfo = $('#userInfo');
         var $elementClass = '.user';
         var $elementWidth = 336;
         var $urlIn = '{{ url('user_following_load', { 'userSlug': user.slug, 'lastElement': '+lastElement+' }) }}';
@@ -47,6 +48,7 @@
         /* Loading more contacts */
         loadElements($container, $elementClass, $urlIn, $messageOut);
         userActions($container); 
+        userActions($userInfo);
     });
 </script>
 {% endblock %}

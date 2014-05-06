@@ -123,7 +123,7 @@ class DefaultController extends Controller {
 
         return $this->render('UserBundle:Default:userWellcome.html.twig', array('users' => $users, 'text' => $text));
     }
-    
+
     public function userWellcomeSearchLoadAction($lastElement, $text = null) {
         $session = $this->getRequest()->getSession();
 
@@ -142,10 +142,10 @@ class DefaultController extends Controller {
                 , $this->container->getParameter('SportChecked.users_limit'), $lastUser);
 
         return $this->render('UserBundle:Default:userSearchLoad.html.twig', array('users' => $users));
-    }    
-    
+    }
+
     public function userIntroBoardsAction() {
-        
+
         $userSlug = $this->get('security.context')->getToken()->getUser()->getSlug();
         $em = $this->getDoctrine()->getManager();
         $boards = $em->getRepository('BoardBundle:Board')->findBoardsByUserSlug($userSlug, $this->container->getParameter('SportChecked.board_limit'));
@@ -160,14 +160,14 @@ class DefaultController extends Controller {
     }
 
     public function userIntroBoardsLoadAction($lastElement) {
-        
+
         $userSlug = $this->get('security.context')->getToken()->getUser()->getSlug();
         $em = $this->getDoctrine()->getManager();
         $boards = $em->getRepository('BoardBundle:Board')->findBoardsByUserSlug($userSlug, $this->container->getParameter('SportChecked.board_limit')
                 , $lastElement);
 
         return $this->render('BoardBundle:Default:boardLoad.html.twig', array('boards' => $boards));
-    }    
+    }
 
     public function userPublicationsAction($userSlug) {
 
@@ -176,7 +176,9 @@ class DefaultController extends Controller {
         $userConnected = $this->get('security.context')->getToken()->getUser();
         $publications = $em->getRepository('PublicationBundle:Publication')->findPublicationsByUser(
                 $user, $userConnected, $this->container->getParameter('SportChecked.publication_limit'));
-
+        
+        $user = $em->getRepository('UserBundle:User')->findUserBySlug($userConnected, $userSlug);
+        
         return $this->render('UserBundle:Default:userPublications.html.twig', array('user' => $user, 'publications' => $publications));
     }
 
@@ -204,12 +206,8 @@ class DefaultController extends Controller {
 
         $em = $this->getDoctrine()->getManager();
         $boards = $em->getRepository('BoardBundle:Board')->findBoardsByUserSlug($userSlug, $this->container->getParameter('SportChecked.board_limit'));
-
-        if (!$boards) {
-            $user = $em->getRepository('UserBundle:User')->findOneBy(array('slug' => $userSlug));
-        } else {
-            $user = $boards[0]->getUser();
-        }
+        $userConnected = $this->get('security.context')->getToken()->getUser();
+        $user = $em->getRepository('UserBundle:User')->findUserBySlug($userConnected, $userSlug);
 
         return $this->render('UserBundle:Default:userBoards.html.twig', array('user' => $user, 'boards' => $boards));
     }
@@ -231,12 +229,12 @@ class DefaultController extends Controller {
                 $boardId, $userConnected, $this->container->getParameter('SportChecked.publication_limit'));
 
         if ($publications) {
-            $user = $publications[0]->getBoard()->getUser();
             $board = $publications[0]->getBoard();
         } else {
-            $user = $em->getRepository('UserBundle:User')->findOneBy(array('slug' => $userSlug));
             $board = $em->getRepository('BoardBundle:Board')->findOneBy(array('id' => $boardId));
         }
+        
+        $user = $em->getRepository('UserBundle:User')->findUserBySlug($userConnected, $userSlug);
 
         return $this->render('UserBundle:Default:userBoardPublications.html.twig', array(
                     'user' => $user, 'board' => $board, 'publications' => $publications));
@@ -276,11 +274,7 @@ class DefaultController extends Controller {
         $sports = $em->getRepository('SportBundle:UserSport')->findUserSportsByUser($userSlug, $userConnected
                 , $this->container->getParameter('SportChecked.sports_limit'));
 
-        if ($sports) {
-            $user = $sports[0]->getUser();
-        } else {
-            $user = $em->getRepository('UserBundle:User')->findOneBy(array('slug' => $userSlug));
-        }
+        $user = $em->getRepository('UserBundle:User')->findUserBySlug($userConnected, $userSlug);
 
         return $this->render('UserBundle:Default:userSports.html.twig', array('user' => $user, 'sports' => $sports));
     }
@@ -370,17 +364,17 @@ class DefaultController extends Controller {
     public function userFollowersAction($userSlug) {
 
         $em = $this->getDoctrine()->getManager();
-        $user = $this->get('security.context')->getToken()->getUser();
-        $followers = $em->getRepository('FollowerBundle:Follower')->findFollowersByUser($userSlug, $user
+        $userConnected = $this->get('security.context')->getToken()->getUser();
+        $followers = $em->getRepository('FollowerBundle:Follower')->findFollowersByUser($userSlug, $userConnected
                 , $this->container->getParameter('SportChecked.users_limit'));
 
-        if ($followers) {
-            $user = $followers[0]->getUser();
-        } else {
-            $user = $em->getRepository('UserBundle:User')->findOneBy(array('slug' => $userSlug));
-        }
+        $user = $em->getRepository('UserBundle:User')->findUserBySlug($userConnected, $userSlug);
 
-        return $this->render('UserBundle:Default:userFollowers.html.twig', array('user' => $user, 'followers' => $followers));
+        if ($user) {
+            return $this->render('UserBundle:Default:userFollowers.html.twig', array('user' => $user, 'followers' => $followers));
+        } else {
+            return $this->redirect($this->generateUrl('static_page', array('page' => 'notFound')));
+        }
     }
 
     public function userFollowersLoadAction($userSlug, $lastElement) {
@@ -407,15 +401,11 @@ class DefaultController extends Controller {
     public function userFollowingAction($userSlug) {
 
         $em = $this->getDoctrine()->getManager();
-        $user = $this->get('security.context')->getToken()->getUser();
+        $userConnected = $this->get('security.context')->getToken()->getUser();
         $following = $em->getRepository('ContactBundle:Contact')->findContactsByUser($userSlug
-                , $user, $this->container->getParameter('SportChecked.users_limit'));
+                , $userConnected, $this->container->getParameter('SportChecked.users_limit'));
 
-        if ($following) {
-            $user = $following[0]->getUser();
-        } else {
-            $user = $em->getRepository('UserBundle:User')->findOneBy(array('slug' => $userSlug));
-        }
+        $user = $em->getRepository('UserBundle:User')->findUserBySlug($userConnected, $userSlug);
 
         return $this->render('UserBundle:Default:userFollowing.html.twig', array('user' => $user, 'following' => $following));
     }
@@ -450,11 +440,11 @@ class DefaultController extends Controller {
         $lists = $em->getRepository('ContactBundle:Contact')->findListsByUser($userSlug, $this->container->getParameter('SportChecked.lists_limit'));
 
         if ($lists) {
-            $user = $lists[0]->getUser();
             $session->set('lastList', end($lists)->getId());
-        } else {
-            $user = $em->getRepository('UserBundle:User')->findOneBy(array('slug' => $userSlug));
-        }
+        } 
+        
+        $userConnected = $this->get('security.context')->getToken()->getUser();
+        $user = $em->getRepository('UserBundle:User')->findUserBySlug($userConnected, $userSlug);
 
         return $this->render('UserBundle:Default:userLists.html.twig', array('user' => $user, 'lists' => $lists));
     }
@@ -475,11 +465,8 @@ class DefaultController extends Controller {
 
         $list = $em->getRepository('ContactBundle:ContactList')->findOneBy(array('id' => $listId));
 
-        if ($members) {
-            $user = $members[0]->getContactList()->getUser();
-        } else {
-            $user = $em->getRepository('UserBundle:User')->findOneBy(array('slug' => $userSlug));
-        }
+        $userConnected = $this->get('security.context')->getToken()->getUser();
+        $user = $em->getRepository('UserBundle:User')->findUserBySlug($userConnected, $userSlug);
 
         return $this->render('UserBundle:Default:userListMembers.html.twig', array('user' => $user, 'list' => $list, 'members' => $members));
     }

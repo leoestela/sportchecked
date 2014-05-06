@@ -36,6 +36,7 @@
     /* Load sports with masonry */
     $( document ).ready(function() {
         var $container = $('#container');
+        var $userInfo = $('#userInfo');
         var $elementClass = '.sport';
         var $elementWidth = 336;
         var $urlIn = '{{ url('user_sports_load', { 'userSlug': user.slug, 'lastElement': '+lastElement+' }) }}';
@@ -52,7 +53,7 @@
         loadElements($container, $elementClass, $urlIn, $messageOut);
         /* Buttons operative */            
         sportActions($container); 
-        userActions($container);
+        userActions($userInfo);
     });    
 </script>
 {% endblock %}

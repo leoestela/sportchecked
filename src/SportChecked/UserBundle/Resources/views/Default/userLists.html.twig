@@ -39,6 +39,7 @@
     /* Load lists with masonry */
     $( document ).ready(function() {
         var $container = $('#container');
+        var $userInfo = $('#userInfo');
         var $elementClass = '.list';
         var $elementWidth = 336;
         var $urlIn = '{{ url('user_lists_load', { 'userSlug': user.slug, 'lastElement': '+lastElement+' }) }}';
@@ -54,7 +55,7 @@
         /* Loading more lists */
         loadElements($container, $elementClass, $urlIn, $messageOut);
         
-        userActions($container); 
+        userActions($userInfo); 
     });     
 </script>
 {% endblock %}

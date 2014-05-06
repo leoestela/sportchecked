@@ -42,6 +42,7 @@
     /* Load publications with masonry */
     $( document ).ready(function() {
         var $container = $('#container');
+        var $userInfo = $('#userInfo');
         var $elementClass = '.pub';
         var $elementWidth = 336;
         var $urlIn = '{{ url('user_board_publications_load', { 'userSlug': user.slug, 'boardId': board.id, 'lastElement': '+lastElement+' }) }}';
@@ -58,7 +59,7 @@
         loadElements($container, $elementClass, $urlIn, $messageOut);
         /* Show and hide action buttons for publications */
         publicationActions($container);
-        userActions($container);  
+        userActions($userInfo);  
     }); 
 </script>
 {% endblock %}

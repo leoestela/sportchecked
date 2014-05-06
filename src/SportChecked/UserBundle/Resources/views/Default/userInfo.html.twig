@@ -28,7 +28,7 @@
         </div>
     </div>
     <div class="user-right">
-        <div class="user-right-elements">
+        <div id="userInfo"class="user-right-elements">
         {% if app.user == user %}
         <a href="{{ path('profile') }}" class="button-blue">
                 Editar perfil
@@ -42,21 +42,26 @@
                 {% endif %}  
             {% else %}
                 {% set count = 0 %}
-            {% endif %}   
+            {% endif %} 
+                
             {% if is_granted('ROLE_USER') %}    
                 <a  id="buttonLists{{ user.id }}" {% if count == 0 %}style="display:none;"{% endif %}
                     href="{{ url('user_modal_contact_lists', { 'userSlug': app.user.slug, 'contactSlug': user.slug }) }}" class="button-grey iframe">
                     <strong>+</strong>
                 </a> 
-            {% endif %}     
-            <a id="buttonUnfollow{{ user.id }}" {% if count == 0 %}style="display:none;"{% endif %}
-                href="{{ url('user_unfollow_contact', { 'userId': user.id }) }}" class="element-button-a buttonUnfollow button-blue">
-                Siguiendo
-            </a>
-            <a  id="buttonFollow{{ user.id }}" {% if count == 1 %}style="display:none;"{% endif %}
-                href="{{ url('user_follow_contact', { 'userId': user.id }) }}" class="element-button-a buttonFollow button-grey">
-                Seguir
-            </a> 
+                <a id="buttonUnfollow{{ user.id }}" {% if count == 0 %}style="display:none;"{% endif %}
+                    href="{{ url('user_unfollow_contact', { 'userId': user.id }) }}" class="element-button-a buttonUnfollow button-blue">
+                    Siguiendo
+                </a>
+                <a  id="buttonFollow{{ user.id }}" {% if count == 1 %}style="display:none;"{% endif %}
+                    href="{{ url('user_follow_contact', { 'userId': user.id }) }}" class="element-button-a buttonFollow button-grey">
+                    Seguir
+                </a>
+            {% else %}
+                <a  href="{{ path('login') }}" class="element-button-a button-grey">
+                    Seguir
+                </a>            
+            {% endif %}        
         {% endif %}
         </div>        
     </div>        

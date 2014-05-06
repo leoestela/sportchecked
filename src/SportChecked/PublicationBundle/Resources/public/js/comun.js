@@ -351,7 +351,7 @@ function userActions($container) {
     });
     /* Actions for unfollow user */
     $container.on('click', '.buttonUnfollow', function() {
-
+        
         var url = $(this).attr("href");
         $.post(url, {
             other: "attributes"
